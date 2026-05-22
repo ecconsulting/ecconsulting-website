@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, MessageCircle, X } from 'lucide-react';
-import { assets, company, navItems } from '../data/site.js';
+import { assets, company, navItems, siteContent } from '../data/site.js';
 import ButtonLink from './ButtonLink.jsx';
 
 export default function Navbar() {
@@ -13,17 +13,17 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/90 text-white shadow-[0_10px_35px_rgba(0,0,0,0.22)] backdrop-blur-xl">
-      <nav className="container-shell flex min-h-20 items-center justify-between gap-4" aria-label="Main navigation">
+      <nav className="container-shell flex min-h-20 items-center justify-between gap-4" aria-label={siteContent.ui.navigationAria}>
         <Link to="/" onClick={close} className="flex items-center gap-3">
           <img
             src={assets.logo}
-            alt="EC Consulting Ltd logo"
+            alt={assets.logoAlt}
             className="h-12 w-12 rounded-md border border-champagne/40 object-cover shadow-gold"
           />
           <span className="min-w-0">
-            <span className="block font-display text-2xl font-semibold leading-none text-white">EC Consulting</span>
+            <span className="block font-display text-2xl font-semibold leading-none text-white">{company.brandName}</span>
             <span className="mt-1 block text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-champagne">
-              Ltd
+              {company.suffix}
             </span>
           </span>
         </Link>
@@ -50,14 +50,14 @@ export default function Navbar() {
             {company.phone}
           </a>
           <ButtonLink href={company.whatsappUrl} external variant="primary" icon={MessageCircle}>
-            WhatsApp
+            {siteContent.ui.whatsappLabel}
           </ButtonLink>
         </div>
 
         <button
           className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-white/20 text-white lg:hidden"
           type="button"
-          aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-label={open ? siteContent.ui.closeMenu : siteContent.ui.openMenu}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
         >
@@ -85,10 +85,10 @@ export default function Navbar() {
             ))}
             <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
               <ButtonLink to="/contact" variant="light" className="w-full" onClick={close}>
-                {isPolish ? 'Kontakt' : 'Contact'}
+                {isPolish ? siteContent.ui.contactPolishLabel : siteContent.ui.contactLabel}
               </ButtonLink>
               <ButtonLink href={company.whatsappUrl} external variant="primary" icon={MessageCircle} className="w-full">
-                WhatsApp
+                {siteContent.ui.whatsappLabel}
               </ButtonLink>
             </div>
           </div>

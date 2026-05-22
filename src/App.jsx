@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
+import SiteMeta from './components/SiteMeta.jsx';
 import Home from './pages/Home.jsx';
 import GrantWriting from './pages/GrantWriting.jsx';
 import BusinessConsultancy from './pages/BusinessConsultancy.jsx';
@@ -12,6 +13,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-porcelain font-body text-charcoal antialiased">
       <ScrollToTop />
+      <SiteMeta />
       <Navbar />
       <main>
         <Routes>

@@ -6,25 +6,27 @@ import IconGrid from '../components/IconGrid.jsx';
 import PricingCards from '../components/PricingCards.jsx';
 import CTASection from '../components/CTASection.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
-import { assets, businessServices, company, pricing } from '../data/site.js';
+import { assets, company, pricing, siteContent } from '../data/site.js';
 
 export default function BusinessConsultancy() {
+  const page = siteContent.pages.business;
+
   return (
     <>
       <PageHero
-        eyebrow="Business Consultancy"
-        title="Financial systems and strategic support for confident business decisions."
-        text="Practical consultancy for bookkeeping, payroll, HMRC support, Xero systems, budgeting, compliance and operational structure."
-        primaryLabel="Book consultation"
-        primaryTo="/business-consultancy#consultation"
-        secondaryLabel="Contact now"
-        secondaryTo="/contact"
+        eyebrow={page.hero.eyebrow}
+        title={page.hero.title}
+        text={page.hero.text}
+        primaryLabel={page.hero.primaryLabel}
+        primaryTo={page.hero.primaryTo}
+        secondaryLabel={page.hero.secondaryLabel}
+        secondaryTo={page.hero.secondaryTo}
       >
         <div className="dark-card rounded-md p-6">
-          <p className="eyebrow">Business support</p>
-          <h2 className="mt-4 text-4xl font-semibold text-white">Organised finance. Clearer operations. Better planning.</h2>
+          <p className="eyebrow">{page.heroPanel.eyebrow}</p>
+          <h2 className="mt-4 text-4xl font-semibold text-white">{page.heroPanel.title}</h2>
           <div className="mt-7 grid gap-3">
-            {['HMRC Registered Agent', 'Xero Professional Partner', '15+ years experience'].map((item) => (
+            {page.heroPanel.badges.map((item) => (
               <div key={item} className="flex items-center gap-3 rounded-md border border-white/10 bg-white/[0.06] p-4">
                 <ShieldCheck className="h-5 w-5 text-champagne" aria-hidden="true" />
                 <span className="text-sm font-bold text-white/80">{item}</span>
@@ -37,13 +39,13 @@ export default function BusinessConsultancy() {
       <MotionSection className="bg-porcelain py-16 sm:py-20">
         <div className="container-shell">
           <SectionHeader
-            eyebrow="Consultancy focus"
-            title="A complete view of finance, compliance and operations."
-            text="Support can be focused on one pressure point or shaped into an ongoing business support relationship."
+            eyebrow={page.services.eyebrow}
+            title={page.services.title}
+            text={page.services.text}
             align="center"
           />
           <div className="mt-10">
-            <IconGrid items={businessServices} />
+            <IconGrid items={page.services.items} />
           </div>
         </div>
       </MotionSection>
@@ -51,9 +53,9 @@ export default function BusinessConsultancy() {
       <MotionSection className="bg-white py-16 sm:py-20">
         <div className="container-shell">
           <SectionHeader
-            eyebrow="Packages"
-            title="Business support packages."
-            text="Choose a starting point for setup, monthly finance support or strategic consultancy."
+            eyebrow={page.pricing.eyebrow}
+            title={page.pricing.title}
+            text={page.pricing.text}
             align="center"
           />
           <div className="mt-10">
@@ -66,19 +68,14 @@ export default function BusinessConsultancy() {
         <div className="container-shell grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
             <SectionHeader
-              eyebrow="Why work with EC Consulting"
-              title="Senior-level judgement with practical delivery."
-              text="EC Consulting combines finance, welfare guidance, grant strategy, compliance awareness and leadership coaching into support that makes sense for real organisations."
+              eyebrow={page.why.eyebrow}
+              title={page.why.title}
+              text={page.why.text}
               light
             />
           </div>
           <div className="grid gap-4">
-            {[
-              'Clear financial insight without unnecessary complexity.',
-              'Support that connects strategy with day-to-day systems.',
-              'Professional guidance for owners, trustees and leadership teams.',
-              'Calm, confidential advice when decisions carry pressure.',
-            ].map((item) => (
+            {page.why.bullets.map((item) => (
               <div key={item} className="dark-card flex gap-4 rounded-md p-5">
                 <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-champagne" aria-hidden="true" />
                 <p className="text-sm font-semibold leading-7 text-white/75">{item}</p>
@@ -94,41 +91,41 @@ export default function BusinessConsultancy() {
             <div className="absolute -inset-4 rounded-md border border-gilt/20" aria-hidden="true" />
             <img
               src={assets.portraitConsultation}
-              alt="Ewelina Chin professional consultation portrait"
+              alt={assets.portraitConsultationAlt}
               className="relative h-[34rem] w-full rounded-md border border-ink/10 object-cover object-[50%_18%] shadow-soft"
               loading="lazy"
             />
           </div>
           <div>
             <SectionHeader
-              eyebrow="Consultation booking"
-              title="Book a professional consultation."
-              text="Use this section to start a conversation about business finance, Xero, payroll, HMRC support, budgeting or operational systems."
+              eyebrow={page.consultation.eyebrow}
+              title={page.consultation.title}
+              text={page.consultation.text}
             />
             <div className="mt-7 grid gap-4 sm:grid-cols-2">
               <a href={`tel:${company.phone.replace(/\s/g, '')}`} className="premium-card rounded-md p-5 transition hover:-translate-y-1 hover:border-gilt/50">
                 <Phone className="h-6 w-6 text-gilt" aria-hidden="true" />
-                <p className="mt-4 text-sm font-bold uppercase tracking-[0.16em] text-graphite">Call</p>
+                <p className="mt-4 text-sm font-bold uppercase tracking-[0.16em] text-graphite">{page.consultation.callLabel}</p>
                 <p className="mt-1 text-lg font-bold text-ink">{company.phone}</p>
               </a>
               <a href={company.whatsappUrl} target="_blank" rel="noreferrer" className="premium-card rounded-md p-5 transition hover:-translate-y-1 hover:border-gilt/50">
                 <MessageCircle className="h-6 w-6 text-gilt" aria-hidden="true" />
-                <p className="mt-4 text-sm font-bold uppercase tracking-[0.16em] text-graphite">WhatsApp</p>
+                <p className="mt-4 text-sm font-bold uppercase tracking-[0.16em] text-graphite">{page.consultation.whatsappLabel}</p>
                 <p className="mt-1 text-lg font-bold text-ink">{company.whatsapp}</p>
               </a>
             </div>
             <ButtonLink to="/contact" icon={CalendarCheck} className="mt-7">
-              Send consultation request
+              {page.consultation.buttonLabel}
             </ButtonLink>
           </div>
         </div>
       </MotionSection>
 
       <CTASection
-        eyebrow="Business clarity"
-        title="Make the next financial decision with structure."
-        text="Get the right support around bookkeeping, payroll, HMRC, Xero, compliance and business planning."
-        primaryLabel="Contact EC Consulting"
+        eyebrow={page.cta.eyebrow}
+        title={page.cta.title}
+        text={page.cta.text}
+        primaryLabel={page.cta.primaryLabel}
         primaryTo="/contact"
         secondaryHref={company.whatsappUrl}
       />

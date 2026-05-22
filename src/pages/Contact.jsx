@@ -1,22 +1,24 @@
-import { ExternalLink, Facebook, Linkedin, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { ExternalLink, Mail, MapPin, MessageCircle } from 'lucide-react';
 import MotionSection from '../components/MotionSection.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import ContactForm from '../components/ContactForm.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
-import { company, contactCards } from '../data/site.js';
+import { company, contactCards, siteContent } from '../data/site.js';
 
 export default function Contact() {
+  const page = siteContent.pages.contact;
+
   return (
     <>
       <section className="bg-quiet-luxury py-16 text-white sm:py-20">
         <div className="container-shell">
           <div className="max-w-4xl">
-            <p className="eyebrow">Contact</p>
+            <p className="eyebrow">{page.hero.eyebrow}</p>
             <h1 className="mt-5 text-5xl font-semibold leading-[0.98] sm:text-6xl">
-              Start a confidential conversation with EC Consulting.
+              {page.hero.title}
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
-              Send an enquiry, call the office or use WhatsApp for grant writing, consultancy, training and general business support.
+              {page.hero.text}
             </p>
           </div>
         </div>
@@ -41,28 +43,28 @@ export default function Contact() {
         <div className="container-shell grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
           <div>
             <SectionHeader
-              eyebrow="Enquiry form"
-              title="Tell us what kind of support you need."
-              text="This form opens a prepared email draft so your message can be sent from your own email account."
+              eyebrow={page.form.eyebrow}
+              title={page.form.title}
+              text={page.form.text}
             />
             <div className="mt-7 grid gap-4 rounded-md border border-ink/10 bg-linen/50 p-5">
               <div className="flex gap-3">
                 <Mail className="mt-1 h-5 w-5 shrink-0 text-gilt" aria-hidden="true" />
                 <div>
-                  <p className="font-bold text-ink">Direct emails</p>
+                  <p className="font-bold text-ink">{page.form.directEmailsTitle}</p>
                   <p className="mt-1 text-sm leading-7 text-graphite">
-                    General: {company.email}
+                    {siteContent.ui.directEmailLabels.general}: {company.email}
                     <br />
-                    Grant writing: {company.grantEmail}
+                    {siteContent.ui.directEmailLabels.grants}: {company.grantEmail}
                     <br />
-                    Polish training: {company.trainingEmail}
+                    {siteContent.ui.directEmailLabels.training}: {company.trainingEmail}
                   </p>
                 </div>
               </div>
               <div className="flex gap-3">
                 <MessageCircle className="mt-1 h-5 w-5 shrink-0 text-gilt" aria-hidden="true" />
                 <div>
-                  <p className="font-bold text-ink">WhatsApp</p>
+                  <p className="font-bold text-ink">{page.form.whatsappTitle}</p>
                   <p className="mt-1 text-sm leading-7 text-graphite">{company.whatsapp}</p>
                 </div>
               </div>
@@ -76,9 +78,9 @@ export default function Contact() {
         <div className="container-shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div>
             <SectionHeader
-              eyebrow="Glasgow office"
-              title="Clyde Offices, West George Street."
-              text="Appointments and consultations are arranged in advance. Please contact EC Consulting before visiting."
+              eyebrow={page.map.eyebrow}
+              title={page.map.title}
+              text={page.map.text}
             />
             <div className="mt-7 space-y-4 text-sm leading-7 text-graphite">
               <p className="flex gap-3">
@@ -86,22 +88,22 @@ export default function Contact() {
                 <span>{company.address}</span>
               </p>
               <p>
-                <strong className="text-ink">Business hours:</strong> Monday to Friday, 9:00-17:00. Evening appointments may be available by arrangement.
+                <strong className="text-ink">{page.map.businessHoursLabel}:</strong> {company.businessHours}
               </p>
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <ButtonLink href={company.whatsappUrl} external icon={MessageCircle}>
-                WhatsApp
+                {siteContent.ui.whatsappLabel}
               </ButtonLink>
               <ButtonLink href={`mailto:${company.email}`} variant="outline" icon={Mail}>
-                Email EC Consulting
+                {page.map.emailButtonLabel}
               </ButtonLink>
             </div>
           </div>
           <div className="overflow-hidden rounded-md border border-ink/10 bg-white shadow-soft">
             <iframe
-              title="Google Maps placeholder for EC Consulting Ltd"
-              src="https://www.google.com/maps?q=Clyde%20Offices%2048%20West%20George%20Street%20Glasgow%20G2%201BP&output=embed"
+              title={page.map.mapTitle}
+              src={company.mapEmbedUrl}
               className="h-[26rem] w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -112,16 +114,12 @@ export default function Contact() {
 
       <MotionSection className="bg-white py-16 sm:py-20">
         <div className="container-shell grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {[
-            { label: 'LinkedIn placeholder', icon: Linkedin },
-            { label: 'Facebook placeholder', icon: Facebook },
-            { label: 'Business profile placeholder', icon: ExternalLink },
-          ].map((item) => {
+          {siteContent.social.map((item) => {
             const Icon = item.icon;
             return (
               <a
                 key={item.label}
-                href="#"
+                href={item.href}
                 className="premium-card flex items-center justify-between gap-4 rounded-md p-5 transition hover:-translate-y-1 hover:border-gilt/50"
                 aria-label={item.label}
               >

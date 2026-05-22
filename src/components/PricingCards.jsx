@@ -1,9 +1,11 @@
 import { CheckCircle2, CreditCard } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { stripePlaceholder } from '../data/site.js';
+import { siteContent, stripePlaceholder } from '../data/site.js';
 import ButtonLink from './ButtonLink.jsx';
 
-export default function PricingCards({ plans, buttonLabel = 'Stripe payment placeholder', polish = false }) {
+export default function PricingCards({ plans, buttonLabel, polish = false }) {
+  const labels = siteContent.ui;
+
   return (
     <div className="grid gap-5 lg:grid-cols-3">
       {plans.map((plan) => (
@@ -19,7 +21,7 @@ export default function PricingCards({ plans, buttonLabel = 'Stripe payment plac
         >
           {plan.featured && (
             <p className="mb-4 inline-flex w-fit rounded-md bg-champagne px-3 py-1 text-xs font-bold uppercase tracking-[0.16em] text-ink">
-              {polish ? 'Polecane' : 'Popular'}
+              {polish ? labels.popularPolishLabel : labels.popularLabel}
             </p>
           )}
           <h3 className={['text-3xl font-semibold', plan.featured ? 'text-white' : 'text-ink'].join(' ')}>
@@ -40,13 +42,13 @@ export default function PricingCards({ plans, buttonLabel = 'Stripe payment plac
             ))}
           </ul>
           <ButtonLink
-            href={stripePlaceholder}
+            href={plan.paymentLink || stripePlaceholder}
             external
             variant={plan.featured ? 'primary' : 'outline'}
             icon={CreditCard}
             className="mt-8 w-full"
           >
-            {buttonLabel}
+            {buttonLabel || (polish ? labels.pricingButtonPolishLabel : labels.pricingButtonLabel)}
           </ButtonLink>
         </motion.article>
       ))}

@@ -1,26 +1,8 @@
 import { Send } from 'lucide-react';
-import { company } from '../data/site.js';
+import { company, siteContent } from '../data/site.js';
 
 export default function ContactForm({ polish = false }) {
-  const labels = polish
-    ? {
-        name: 'Imię i nazwisko',
-        email: 'Adres e-mail',
-        phone: 'Telefon',
-        service: 'Temat',
-        message: 'Wiadomość',
-        submit: 'Wyślij zapytanie',
-        placeholder: 'Napisz, w czym możemy pomóc.',
-      }
-    : {
-        name: 'Full name',
-        email: 'Email address',
-        phone: 'Phone',
-        service: 'Service interest',
-        message: 'Message',
-        submit: 'Send enquiry',
-        placeholder: 'Tell us what support you need.',
-      };
+  const labels = polish ? siteContent.forms.contact.pl : siteContent.forms.contact.en;
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,9 +16,9 @@ export default function ContactForm({ polish = false }) {
       `${labels.message}:`,
       form.get('message'),
     ];
-    window.location.href = `mailto:${company.email}?subject=${encodeURIComponent('Website enquiry')}&body=${encodeURIComponent(
-      lines.join('\n'),
-    )}`;
+    window.location.href = `mailto:${company.email}?subject=${encodeURIComponent(
+      siteContent.ui.websiteEnquirySubject,
+    )}&body=${encodeURIComponent(lines.join('\n'))}`;
   };
 
   return (
@@ -72,10 +54,9 @@ export default function ContactForm({ polish = false }) {
         <label className="block">
           <span className="text-sm font-bold text-ink">{labels.service}</span>
           <select name="service" className="mt-2 min-h-12 w-full rounded-md border border-ink/10 bg-white px-4 text-sm">
-            <option>Grant writing</option>
-            <option>Business consultancy</option>
-            <option>Szkolenia PL</option>
-            <option>General enquiry</option>
+            {labels.options.map((option) => (
+              <option key={option}>{option}</option>
+            ))}
           </select>
         </label>
       </div>

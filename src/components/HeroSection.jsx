@@ -1,9 +1,11 @@
 import { ArrowRight, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { assets, stats } from '../data/site.js';
+import { assets, siteContent } from '../data/site.js';
 import ButtonLink from './ButtonLink.jsx';
 
 export default function HeroSection() {
+  const { hero } = siteContent.home;
+
   return (
     <section className="relative overflow-hidden bg-quiet-luxury text-white">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-champagne/80 to-transparent" />
@@ -13,25 +15,24 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="eyebrow">EC Consulting Ltd</p>
+          <p className="eyebrow">{hero.eyebrow}</p>
           <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-[0.95] tracking-normal sm:text-6xl lg:text-7xl">
-            Professional Financial, Grant & Business Consultancy
+            {hero.title}
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/75 sm:text-lg">
-            Supporting charities, businesses and purpose-driven organisations with strategic consultancy,
-            funding support and professional development.
+            {hero.subtitle}
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <ButtonLink to="/business-consultancy#consultation" icon={ArrowRight}>
-              Book Consultation
+            <ButtonLink to={hero.primaryCta.to} icon={ArrowRight}>
+              {hero.primaryCta.label}
             </ButtonLink>
-            <ButtonLink to="/contact" variant="ghost" icon={Mail}>
-              Contact Now
+            <ButtonLink to={hero.secondaryCta.to} variant="ghost" icon={Mail}>
+              {hero.secondaryCta.label}
             </ButtonLink>
           </div>
 
           <div className="mt-10 grid gap-3 sm:grid-cols-2">
-            {stats.map((item) => {
+            {hero.stats.map((item) => {
               const Icon = item.icon;
               return (
                 <motion.div
@@ -57,13 +58,13 @@ export default function HeroSection() {
           <div className="relative overflow-hidden rounded-md border border-champagne/30 bg-charcoal shadow-gold">
             <img
               src={assets.portraitHero}
-              alt="Professional portrait of Ewelina Chin"
+              alt={assets.portraitHeroAlt}
               className="h-[34rem] w-full object-cover object-[50%_18%] sm:h-[42rem] lg:h-[46rem]"
             />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-6">
-              <p className="font-display text-3xl font-semibold">Ewelina Chin</p>
+              <p className="font-display text-3xl font-semibold">{hero.portraitCaptionName}</p>
               <p className="mt-1 text-sm font-semibold uppercase tracking-[0.18em] text-champagne">
-                Financial consultant & grant specialist
+                {hero.portraitCaptionTitle}
               </p>
             </div>
           </div>

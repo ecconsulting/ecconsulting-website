@@ -1,14 +1,15 @@
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import ButtonLink from './ButtonLink.jsx';
 import MotionSection from './MotionSection.jsx';
+import { siteContent } from '../data/site.js';
 
 export default function CTASection({
-  eyebrow = 'Next step',
+  eyebrow = siteContent.ui.contactLabel,
   title,
   text,
-  primaryLabel = 'Book Consultation',
+  primaryLabel = siteContent.home.hero.primaryCta.label,
   primaryTo = '/contact',
-  secondaryLabel = 'WhatsApp',
+  secondaryLabel = siteContent.ui.whatsappLabel,
   secondaryHref,
 }) {
   return (
