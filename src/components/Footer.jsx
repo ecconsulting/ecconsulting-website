@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
+import { useForm, ValidationError } from '@formspree/react';
+import { AlertCircle, CheckCircle2, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
 import { assets, company, navItems, siteContent } from '../data/site.js';
 
 export default function Footer() {
@@ -7,6 +8,7 @@ export default function Footer() {
   const isPolish = pathname === '/szkolenia-pl';
   const footer = siteContent.footer;
   const formText = isPolish ? siteContent.forms.footer.pl : siteContent.forms.footer.en;
+  const [footerFormState, handleFooterSubmit] = useForm(siteContent.formspree.formId);
 
   return (
     <footer className="bg-ink text-white">
@@ -81,43 +83,71 @@ export default function Footer() {
           <p className="mt-2 text-sm leading-6 text-white/70">
             {formText.description}
           </p>
-          <form
-            className="mt-5 space-y-3"
-            onSubmit={(event) => {
-              event.preventDefault();
-              const form = new FormData(event.currentTarget);
-              const subject = encodeURIComponent(form.get('subject') || siteContent.ui.websiteEnquirySubject);
-              const message = encodeURIComponent(form.get('message') || '');
-              window.location.href = `mailto:${company.email}?subject=${subject}&body=${message}`;
-            }}
-          >
-            <label className="sr-only" htmlFor="footer-subject">
-              {formText.subject}
-            </label>
-            <input
-              id="footer-subject"
-              name="subject"
-              className="min-h-12 w-full rounded-md border border-white/10 bg-white/10 px-4 text-sm text-white placeholder:text-white/50"
-              placeholder={formText.subject}
-            />
-            <label className="sr-only" htmlFor="footer-message">
-              {formText.message}
-            </label>
-            <textarea
-              id="footer-message"
-              name="message"
-              rows="3"
-              className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/50"
-              placeholder={formText.message}
-            />
-            <button
-              type="submit"
-              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-champagne bg-champagne px-5 py-3 text-sm font-bold text-ink shadow-gold transition hover:bg-[#e4c984]"
+          {footerFormState.succeeded ? (
+            <div className="mt-5 rounded-md border border-champagne/30 bg-white/10 p-4" role="status">
+              <CheckCircle2 className="h-5 w-5 text-champagne" aria-hidden="true" />
+              <p className="mt-3 text-sm font-semibold leading-6 text-white">{formText.successText}</p>
+            </div>
+          ) : (
+            <form
+              className="mt-5 space-y-3"
+              action={siteContent.formspree.endpoint}
+              method="POST"
+              onSubmit={handleFooterSubmit}
             >
-              <Send className="h-4 w-4" aria-hidden="true" />
-              {formText.submit}
-            </button>
-          </form>
+              <input type="hidden" name="_subject" value={`${siteContent.ui.websiteEnquirySubject} - footer`} />
+              <input type="hidden" name="source_form" value="Footer quick enquiry" />
+              <label className="sr-only" htmlFor="footer-email">
+                {formText.email}
+              </label>
+              <input
+                id="footer-email"
+                name="email"
+                type="email"
+                required
+                className="min-h-12 w-full rounded-md border border-white/10 bg-white/10 px-4 text-sm text-white placeholder:text-white/50"
+                placeholder={formText.email}
+                autoComplete="email"
+              />
+              <ValidationError className="block text-xs font-semibold text-champagne" field="email" errors={footerFormState.errors} />
+              <label className="sr-only" htmlFor="footer-subject">
+                {formText.subject}
+              </label>
+              <input
+                id="footer-subject"
+                name="subject"
+                className="min-h-12 w-full rounded-md border border-white/10 bg-white/10 px-4 text-sm text-white placeholder:text-white/50"
+                placeholder={formText.subject}
+              />
+              <ValidationError className="block text-xs font-semibold text-champagne" field="subject" errors={footerFormState.errors} />
+              <label className="sr-only" htmlFor="footer-message">
+                {formText.message}
+              </label>
+              <textarea
+                id="footer-message"
+                name="message"
+                required
+                rows="3"
+                className="w-full rounded-md border border-white/10 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/50"
+                placeholder={formText.message}
+              />
+              <ValidationError className="block text-xs font-semibold text-champagne" field="message" errors={footerFormState.errors} />
+              {footerFormState.errors?.length > 0 && (
+                <p className="flex items-start gap-2 rounded-md border border-champagne/25 bg-white/10 p-3 text-xs font-semibold leading-5 text-white">
+                  <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
+                  <span>{formText.errorText}</span>
+                </p>
+              )}
+              <button
+                type="submit"
+                disabled={footerFormState.submitting}
+                className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-md border border-champagne bg-champagne px-5 py-3 text-sm font-bold text-ink shadow-gold transition hover:bg-[#e4c984] disabled:cursor-not-allowed disabled:opacity-70"
+              >
+                <Send className="h-4 w-4" aria-hidden="true" />
+                {footerFormState.submitting ? formText.submitting : formText.submit}
+              </button>
+            </form>
+          )}
         </div>
       </div>
       <div className="border-t border-white/10 py-6">

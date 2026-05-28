@@ -146,6 +146,11 @@ export const siteContent = {
     themeColor: '#15120f',
     image: assetContent.logo,
   },
+  formspree: {
+    formId: 'mpqnbjbv',
+    endpoint: 'https://formspree.io/f/mpqnbjbv',
+    szkoleniaEndpoint: 'PASTE_FORMSPREE_SZKOLENIA_ENDPOINT_HERE',
+  },
   navigation: [
     { label: 'Home', polishLabel: 'Strona główna', path: '/' },
     { label: 'Grant Writing', polishLabel: 'Dotacje', path: '/grant-writing' },
@@ -181,6 +186,10 @@ export const siteContent = {
         service: 'Service interest',
         message: 'Message',
         submit: 'Send enquiry',
+        submitting: 'Sending...',
+        successTitle: 'Thank you. Your enquiry has been sent.',
+        successText: 'EC Consulting will reply as soon as possible.',
+        errorText: 'Something went wrong. Please try again or email EC Consulting directly.',
         placeholder: 'Tell us what support you need.',
         options: ['Grant writing', 'Business consultancy', 'Szkolenia PL', 'General enquiry'],
       },
@@ -191,6 +200,10 @@ export const siteContent = {
         service: 'Temat',
         message: 'Wiadomość',
         submit: 'Wyślij zapytanie',
+        submitting: 'Wysyłanie...',
+        successTitle: 'Dziękujemy. Wiadomość została wysłana.',
+        successText: 'EC Consulting odpowie tak szybko, jak to możliwe.',
+        errorText: 'Coś poszło nie tak. Spróbuj ponownie albo napisz bezpośrednio e-mail.',
         placeholder: 'Napisz, w czym możemy pomóc.',
         options: ['Dotacje', 'Konsulting biznesowy', 'Szkolenia PL', 'Zapytanie ogólne'],
       },
@@ -198,17 +211,25 @@ export const siteContent = {
     footer: {
       en: {
         title: 'Quick enquiry',
-        description: 'Send a short message. The form opens an email draft ready to send.',
+        description: 'Send a short message securely through the website.',
+        email: 'Email address',
         subject: 'Subject',
         message: 'Message',
         submit: 'Send enquiry',
+        submitting: 'Sending...',
+        successText: 'Thank you. Your message has been sent.',
+        errorText: 'Something went wrong. Please try again.',
       },
       pl: {
         title: 'Szybki kontakt',
-        description: 'Napisz krótką wiadomość. Formularz przygotuje e-mail do wysłania.',
+        description: 'Wyślij krótką wiadomość bezpośrednio przez stronę.',
+        email: 'Adres e-mail',
         subject: 'Temat',
         message: 'Wiadomość',
         submit: 'Wyślij e-mail',
+        submitting: 'Wysyłanie...',
+        successText: 'Dziękujemy. Wiadomość została wysłana.',
+        errorText: 'Coś poszło nie tak. Spróbuj ponownie.',
       },
     },
   },
@@ -511,68 +532,340 @@ export const siteContent = {
     training: {
       hero: {
         eyebrow: 'Szkolenia PL',
-        title: 'Profesjonalne szkolenia biznesowe i dotacyjne w języku polskim.',
+        title: 'Profesjonalne szkolenia online dla startupów, NGO i osób rozwijających działalność',
         text:
-          'Praktyczne wsparcie dla osób, firm i organizacji, które chcą rozwijać działalność, lepiej rozumieć finanse, przygotowywać dotacje i budować pewność w działaniu.',
-        primaryLabel: 'Skontaktuj się z nami',
-        primaryTo: '/contact',
-        secondaryLabel: 'Zobacz tematy',
-        secondaryTo: '/szkolenia-pl#tematy',
+          'Praktyczne kursy z zakresu funduszy europejskich, przygotowania projektów, współpracy z instytucjami i rozwoju kompetencji doradczych.',
+        primaryLabel: 'Zobacz dostępne kursy',
+        primaryTo: '/szkolenia-pl#dostepne-kursy',
+        secondaryLabel: 'Zapytaj o dofinansowanie BUR',
+        secondaryTo: '/szkolenia-pl#formularz-szkolenia',
       },
       heroPanel: {
-        eyebrow: 'Rozwój zawodowy',
-        title: 'Szkolenia online i stacjonarne dla osób, które chcą działać profesjonalnie.',
-        badges: ['Jasny język', 'Praktyczne materiały', 'Wsparcie po szkoleniu'],
+        eyebrow: 'Zakres szkoleń',
+        title: 'Fundusze, projekty, dokumentacja i kompetencje doradcze.',
+        badges: ['Start-upy i NGO', 'Projekty unijne', 'Dofinansowanie BUR'],
       },
-      topics: {
-        eyebrow: 'Tematy',
-        title: 'Szkolenia dopasowane do realnych potrzeb.',
+      intro: {
         text:
-          'Zakres szkolenia można dopasować do poziomu uczestników, branży, organizacji lub konkretnego celu biznesowego.',
+          'Szkolenia prowadzone są w praktycznym, uporządkowanym i przystępnym formacie. Programy są przygotowane z myślą o osobach, które chcą lepiej rozumieć dokumentację projektową, przygotowywać skuteczne wnioski, rozwijać działalność lub świadczyć usługi doradcze.',
+      },
+      twoDayCourses: {
+        title: 'Kursy online 2-dniowe',
+        info: [
+          'Cena: 1400 PLN za osobę',
+          'Format: online',
+          'Czas trwania: 2 dni',
+          'Minimalna liczba uczestników: 4 osoby',
+          'Możliwość dofinansowania BUR nawet do 80% w partnerstwie z Jaśkiewicz Academy',
+          'W celu uzyskania szczegółów prosimy o kontakt',
+        ],
+        ctaLabel: 'Zapytaj o dofinansowanie BUR',
         items: [
-          { title: 'Dotacje', icon: HandHeart },
-          { title: 'Biznes', icon: BriefcaseBusiness },
-          { title: 'Księgowość', icon: ReceiptText },
-          { title: 'Rozwój działalności', icon: Target },
-          { title: 'Umiejętności miękkie', icon: Users },
-          { title: 'Szkolenia online', icon: BookOpenCheck },
-          { title: 'Szkolenia stacjonarne', icon: GraduationCap },
+          {
+            title: 'Zarządzanie projektami unijnymi – od pomysłu do realizacji',
+            bullets: [
+              'Wprowadzenie do mechanizmów finansowania projektów z UE',
+              'Kluczowe etapy przygotowania i wdrożenia projektów',
+              'Najczęstsze błędy i dobre praktyki',
+            ],
+          },
+          {
+            title: 'Fundusze europejskie na start – jak założyć firmę z pomocą środków UE',
+            bullets: [
+              'Przegląd dostępnych programów dla początkujących przedsiębiorców',
+              'Przygotowanie skutecznego wniosku',
+              'Rozliczanie i monitoring projektu',
+            ],
+          },
+          {
+            title: 'Rozwój działalności gospodarczej dzięki funduszom UE',
+            bullets: [
+              'Możliwości rozwoju firmy przy wsparciu funduszy strukturalnych',
+              'Przykłady działań rozwojowych',
+              'Budowanie strategii wzrostu opartej na wsparciu zewnętrznym',
+            ],
+          },
+          {
+            title: 'Jak efektywnie współpracować z urzędami pracy (PUP) – regionalne ścieżki wsparcia',
+            bullets: [
+              'Aktualny przegląd instrumentów wsparcia w urzędach pracy',
+              'Praktyczna współpraca z instytucjami rynku pracy',
+              'Przygotowywanie dokumentacji do programów regionalnych',
+            ],
+          },
+          {
+            title: 'Profesjonalne przygotowanie dokumentacji do projektów unijnych',
+            bullets: [
+              'Najważniejsze elementy wniosku projektowego',
+              'Najczęstsze błędy formalne i jak ich unikać',
+              'Praktyczny warsztat – przejście przez dokumentację krok po kroku',
+            ],
+          },
+          {
+            title: 'Skuteczna komunikacja i prowadzenie konsultacji w branży doradczej',
+            bullets: [
+              'Kluczowe umiejętności komunikacyjne',
+              'Narzędzia pracy konsultanta',
+              'Budowanie trwałych relacji z klientami',
+            ],
+          },
         ],
       },
-      approach: {
-        eyebrow: 'Styl pracy',
-        title: 'Elegancko, konkretnie i z szacunkiem dla doświadczenia uczestników.',
-        text:
-          'Szkolenia łączą wiedzę finansową, biznesową i miękkie kompetencje, aby uczestnicy wychodzili z jasnym planem działania.',
-        buttonLabel: 'Zapytaj o termin',
-        bullets: [
-          'Dotacje: od pomysłu do wniosku i budżetu projektu.',
-          'Biznes: planowanie, organizacja, oferta i komunikacja.',
-          'Księgowość: podstawy, dokumenty, terminy i odpowiedzialność.',
-          'Umiejętności miękkie: komunikacja, odporność, przywództwo i praca z klientem.',
+      shortCourses: {
+        title: 'Krótkie kursy online 4-godzinne',
+        info: [
+          'Cena: 399 PLN',
+          'Format: online',
+          'Czas trwania: 4 godziny',
+          'Minimalna liczba uczestników: 6 osób',
+          'Możliwość dofinansowania BUR nawet do 80%',
+          'W celu uzyskania szczegółów prosimy o kontakt',
+        ],
+        items: [
+          {
+            title: 'Jak rozumieć aplikacje o dofinansowanie',
+            description:
+              'Kurs wprowadzający w analizę dokumentacji konkursowej, zrozumienie kryteriów oceny oraz ocenę szans powodzenia projektu.',
+            bullets: [
+              'Struktura aplikacji / wniosku',
+              'Analiza wytycznych i dokumentów konkursowych',
+              'Kluczowe błędy i dobre praktyki',
+              'Przykłady rzeczywistych aplikacji',
+            ],
+          },
+          {
+            title: 'Zbieranie i interpretacja wymagań projektowych',
+            description:
+              'Nauka ustalania realnych celów projektu, definiowania wymagań oraz mapowania interesariuszy.',
+            bullets: [
+              'Identyfikacja potrzeb biznesowych',
+              'Definiowanie celów SMART',
+              'Warsztaty z interesariuszami',
+              'Tworzenie matryc wymagań',
+            ],
+          },
+          {
+            title: 'Jak budować kosztorys projektu',
+            description:
+              'Wprowadzenie do budżetowania przedsięwzięć, szacowania kosztów i efektywności finansowej.',
+            bullets: [
+              'Struktura kosztorysu i najczęstsze kategorie wydatków',
+              'Źródła danych do szacowania kosztów',
+              'Przykłady budżetów do wniosków UE i krajowych',
+              'Analiza ryzyka kosztowego',
+            ],
+          },
+          {
+            title: 'Badanie rynku i analiza konkurencji',
+            description:
+              'Praktyczny przewodnik po metodach zbierania informacji o rynku i konkurentach.',
+            bullets: [
+              'Metody badań rynku: desk research, wywiady, ankiety',
+              'Narzędzia analityczne: SWOT, benchmarking',
+              'Interpretacja wyników badań',
+              'Wykorzystanie danych w aplikacjach projektowych',
+            ],
+          },
+          {
+            title: 'Pisanie wniosków do urzędu pracy o dotację',
+            description:
+              'Praktyczny kurs o przygotowywaniu efektywnych wniosków o dofinansowanie na start działalności gospodarczej.',
+            bullets: [
+              'Wytyczne PUP i kluczowe elementy wniosku',
+              'Harmonogram realizacji i plan wydatków',
+              'Przykładowy wniosek wraz z omówieniem',
+              'Najczęstsze błędy i wskazówki',
+            ],
+          },
+          {
+            title: 'Pisanie aplikacji do PFRON',
+            description:
+              'Specyfika projektów skierowanych do osób z niepełnosprawnościami – wymagania, uzasadnienie i dokumentacja.',
+            bullets: [
+              'Struktura wniosku do PFRON',
+              'Dokumentacja potwierdzająca spełnienie kryteriów',
+              'Opis działań i celów zgodnych z misją PFRON',
+              'Przykłady skutecznych aplikacji',
+            ],
+          },
+          {
+            title: 'Pomiary rezultatów i wskaźników w projekcie',
+            description:
+              'Jak planować i monitorować stopień realizacji celów projektowych oraz raportować postępy.',
+            bullets: [
+              'Definicja wskaźników rezultatu i produktu',
+              'Planowanie pomiarów',
+              'Narzędzia raportowania',
+              'Typowe problemy i sposoby ich rozwiązywania',
+            ],
+          },
+          {
+            title: 'Tworzenie aplikacji projektowych dla NGO',
+            description:
+              'Kompleksowy przewodnik po pisaniu wniosków zgodnie z wymogami programów grantowych dla organizacji pozarządowych.',
+            bullets: [
+              'Analiza specyfiki działalności NGO',
+              'Struktura i język wniosku grantowego',
+              'Podkreślanie wpływu społecznego i trwałości projektu',
+              'Przykłady udanych projektów',
+            ],
+          },
         ],
       },
-      pricing: {
-        eyebrow: 'Cennik',
-        title: 'Pakiety szkoleniowe.',
-        text:
-          'Poniższe ceny są punktami startowymi. Ostateczny zakres zależy od liczby uczestników, formy szkolenia i oczekiwanych materiałów.',
+      availableCourses: {
+        title: 'Dostępne kursy – zapisz się już dziś',
+        orderLabel: 'Zamów teraz',
+        burLabel: 'Zapytaj o dofinansowanie BUR',
+        stripePlaceholder: 'https://buy.stripe.com/REPLACE_ME',
+        items: [
+          {
+            date: '25/08/2026',
+            time: '9:00–13:30',
+            title: 'Tworzenie aplikacji projektowych dla NGO',
+            price: '399 PLN',
+            paymentLink: 'https://buy.stripe.com/REPLACE_ME',
+          },
+          {
+            date: '28/10/2026',
+            time: '9:00–13:30',
+            title: 'Tworzenie aplikacji projektowych dla NGO',
+            price: '399 PLN',
+            paymentLink: 'https://buy.stripe.com/REPLACE_ME',
+          },
+          {
+            date: '27/09/2026',
+            time: '9:00–13:30',
+            title: 'Pomiary rezultatów i wskaźników w projekcie',
+            price: '399 PLN',
+            paymentLink: 'https://buy.stripe.com/REPLACE_ME',
+          },
+          {
+            date: '26/09/2026',
+            time: '9:00–13:30',
+            title: 'Pomiary rezultatów i wskaźników w projekcie',
+            price: '399 PLN',
+            paymentLink: 'https://buy.stripe.com/REPLACE_ME',
+          },
+          {
+            date: '26/08/2026',
+            time: '9:00–13:30',
+            title: 'Pisanie wniosków do urzędu pracy o dotację',
+            price: '249 PLN',
+            badge: 'Oferta specjalna',
+            paymentLink: 'https://buy.stripe.com/REPLACE_ME',
+          },
+          {
+            date: '26/10/2026',
+            time: '9:00–13:30',
+            title: 'Pisanie wniosków do urzędu pracy o dotację',
+            price: '249 PLN',
+            badge: 'Oferta specjalna',
+            paymentLink: 'https://buy.stripe.com/REPLACE_ME',
+          },
+          {
+            date: '16/10/2026',
+            time: '9:00–13:30',
+            title: 'Jak budować kosztorys projektu',
+            price: '399 PLN',
+            paymentLink: 'https://buy.stripe.com/REPLACE_ME',
+          },
+          {
+            date: '16/11/2026',
+            time: '9:00–13:30',
+            title: 'Jak budować kosztorys projektu',
+            price: '399 PLN',
+            paymentLink: 'https://buy.stripe.com/REPLACE_ME',
+          },
+        ],
       },
-      contactBand: {
-        eyebrow: 'Kontakt po polsku',
-        title: 'Porozmawiajmy o szkoleniu dopasowanym do Twoich potrzeb.',
-        text:
-          `Napisz na ${companyContent.trainingEmail} albo użyj formularza kontaktowego, aby opisać temat, grupę i preferowaną formę szkolenia.`,
-        primaryLabel: 'Skontaktuj się z nami',
-        secondaryLabel: 'WhatsApp',
+      consultation: {
+        title: 'Konsultacja szkoleniowa',
+        price: '349 PLN',
+        description: 'Indywidualna rozmowa, diagnoza potrzeb i plan dalszego rozwoju lub szkolenia.',
+        includes: ['60 minut online', 'Plan działania', 'Materiały po spotkaniu', 'Wsparcie mailowe'],
+        buttonLabel: 'Zarezerwuj konsultację',
+        paymentLink: 'https://buy.stripe.com/REPLACE_ME',
       },
-      cta: {
-        eyebrow: 'Szkolenia PL',
-        title: 'Skontaktuj się z nami',
-        text:
-          'Profesjonalne szkolenia po polsku z zakresu dotacji, biznesu, księgowości, rozwoju działalności i umiejętności miękkich.',
-        primaryLabel: 'Wyślij zapytanie',
-        secondaryLabel: 'WhatsApp',
+      stationary: {
+        title: 'Szkolenia stacjonarne',
+        price: 'Wycena indywidualna',
+        description: 'Profesjonalne szkolenie dla zespołów, organizacji i grup lokalnych.',
+        includes: ['Program dopasowany do grupy', 'Materiały szkoleniowe', 'Praca warsztatowa', 'Raport po szkoleniu'],
+        buttonLabel: 'Zapytaj o wycenę',
+      },
+      applicationForm: {
+        title: 'Formularz zgłoszeniowy',
+        intro: 'Wypełnij formularz, aby zgłosić udział w szkoleniu lub zapytać o dofinansowanie BUR.',
+        referralNote:
+          'Za każdą osobę poleconą, która kupi kurs, osoba polecająca otrzyma kupon Rossmann o wartości 30 PLN.',
+        fields: {
+          firstName: 'Imię',
+          lastName: 'Nazwisko',
+          email: 'Adres e-mail',
+          phone: 'Numer telefonu',
+          selectedTraining: 'Wybrane szkolenie',
+          supportNeeds: 'Szczególne potrzeby wspierające udział w szkoleniu',
+          questions: 'Pytania, na które chcesz uzyskać odpowiedź podczas szkolenia',
+          referral1Name: 'Polecenie 1: imię i nazwisko',
+          referral1Email: 'Polecenie 1: e-mail',
+          referral1Phone: 'Polecenie 1: telefon',
+          referral2Name: 'Polecenie 2: imię i nazwisko',
+          referral2Email: 'Polecenie 2: e-mail',
+          referral2Phone: 'Polecenie 2: telefon',
+          referral3Name: 'Polecenie 3: imię i nazwisko',
+          referral3Email: 'Polecenie 3: e-mail',
+          referral3Phone: 'Polecenie 3: telefon',
+        },
+        termsLabel: 'Akceptuję regulamin szkolenia',
+        gdprLabel: 'Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z RODO',
+        buttonLabel: 'Wyślij zgłoszenie',
+        sendingLabel: 'Wysyłanie zgłoszenia...',
+        successMessage: 'Dziękujemy. Twoje zgłoszenie zostało wysłane.',
+        errorMessage:
+          `Wystąpił błąd. Spróbuj ponownie lub napisz do nas bezpośrednio: ${companyContent.trainingEmail}`,
+      },
+      terms: {
+        title: 'Regulamin szkolenia',
+        items: [
+          'Rezerwacja miejsca następuje po przesłaniu formularza i/lub dokonaniu płatności.',
+          'Szkolenie online odbędzie się, jeśli zapisze się minimalna wymagana liczba uczestników.',
+          'Dla kursów 2-dniowych minimum to 4 osoby.',
+          'Dla kursów 4-godzinnych minimum to 6 osób.',
+          'Organizator może zaproponować nowy termin, jeśli minimalna liczba uczestników nie zostanie osiągnięta.',
+          'Uczestnik otrzymuje materiały pomocnicze.',
+          'Uczestnik otrzymuje certyfikat ukończenia szkolenia.',
+          'Link do szkolenia online zostanie wysłany na adres e-mail podany w formularzu.',
+          'Uczestnik odpowiada za poprawność danych podanych w formularzu.',
+        ],
+      },
+      refunds: {
+        title: 'Zasady rezygnacji i zwrotu kosztów',
+        items: [
+          '80% zwrotu, jeśli rezygnacja nastąpi więcej niż 30 dni przed terminem szkolenia.',
+          '50% zwrotu, jeśli rezygnacja nastąpi 20–29 dni przed terminem szkolenia.',
+          '30% zwrotu, jeśli rezygnacja nastąpi 15–19 dni przed terminem szkolenia.',
+          'Brak zwrotu, jeśli rezygnacja nastąpi mniej niż 14 dni przed terminem szkolenia.',
+        ],
+      },
+      gdpr: {
+        title: 'RODO',
+        items: [
+          'Administratorem danych jest EC Consulting Ltd.',
+          'Dane są przetwarzane w celu obsługi zgłoszenia, kontaktu, organizacji szkolenia i realizacji usługi.',
+          'Dane mogą być wykorzystywane do kontaktu organizacyjnego przed i po szkoleniu.',
+          'Podanie danych jest dobrowolne, ale konieczne do obsługi zgłoszenia.',
+          'Osoba zgłaszająca ma prawo dostępu do danych, sprostowania, usunięcia lub ograniczenia przetwarzania.',
+          `Kontakt w sprawach danych: ${companyContent.trainingEmail}`,
+        ],
+      },
+      contact: {
+        title: 'Kontakt w sprawie szkoleń',
+        emailLabel: 'Email',
+        whatsappLabel: 'WhatsApp',
+        generalLabel: 'Kontakt ogólny',
+        emailButton: 'Napisz e-mail',
+        whatsappButton: 'WhatsApp',
+        burButton: 'Zapytaj o dofinansowanie BUR',
       },
     },
     contact: {
@@ -591,7 +884,7 @@ export const siteContent = {
       form: {
         eyebrow: 'Enquiry form',
         title: 'Tell us what kind of support you need.',
-        text: 'This form opens a prepared email draft so your message can be sent from your own email account.',
+        text: 'This form securely sends your enquiry to EC Consulting through Formspree.',
         directEmailsTitle: 'Direct emails',
         whatsappTitle: 'WhatsApp',
       },
@@ -617,7 +910,7 @@ export const servicePreviews = siteContent.home.services.cards;
 export const testimonials = siteContent.home.testimonials.items;
 export const grantServices = siteContent.pages.grants.services.items;
 export const businessServices = siteContent.pages.business.services.items;
-export const polishTopics = siteContent.pages.training.topics.items;
+export const polishTopics = [];
 export const contactCards = siteContent.pages.contact.cards;
 export const stripePlaceholder = siteContent.stripe.fallbackPaymentLink;
 export const pricing = siteContent.pricing;

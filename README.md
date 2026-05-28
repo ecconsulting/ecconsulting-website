@@ -68,7 +68,16 @@ Open that file and edit the text inside quotes. Do not change the surrounding co
 5. Keep the path starting with `/assets/`.
 6. Save and run `npm run build`.
 
-### 5. Publishing changes with Git
+### 5. Updating the contact form endpoint
+
+The website uses Formspree for contact form submissions.
+
+1. Open `src/data/site.js`.
+2. Find `formspree`.
+3. Update `formId` and `endpoint` if you create a new Formspree form.
+4. Save and run `npm run build`.
+
+### 6. Publishing changes with Git
 
 Run these commands from the project folder:
 
@@ -87,4 +96,98 @@ git remote add origin YOUR_GITHUB_REPOSITORY_URL
 git add .
 git commit -m "Initial EC Consulting website"
 git push -u origin main
+```
+
+## How to edit Szkolenia PL
+
+All Polish training page content is stored in:
+
+```text
+src/data/site.js
+```
+
+Find this section:
+
+```text
+pages: {
+  training: {
+```
+
+### 1. Where to edit course names
+
+Edit course titles in:
+
+```text
+siteContent.pages.training.twoDayCourses.items
+siteContent.pages.training.shortCourses.items
+siteContent.pages.training.availableCourses.items
+```
+
+Change only the text inside `title: '...'`.
+
+### 2. Where to edit prices
+
+Edit prices in:
+
+```text
+siteContent.pages.training.twoDayCourses.info
+siteContent.pages.training.shortCourses.info
+siteContent.pages.training.availableCourses.items
+siteContent.pages.training.consultation.price
+siteContent.pages.training.stationary.price
+```
+
+For scheduled courses, change the text inside `price: '...'`.
+
+### 3. Where to edit dates
+
+Edit scheduled course dates in:
+
+```text
+siteContent.pages.training.availableCourses.items
+```
+
+Change the values inside `date: '...'` and `time: '...'`.
+
+### 4. Where to paste Stripe links
+
+Stripe placeholder links are stored in:
+
+```text
+siteContent.pages.training.availableCourses.items
+siteContent.pages.training.consultation.paymentLink
+```
+
+Replace:
+
+```text
+https://buy.stripe.com/REPLACE_ME
+```
+
+with the real Stripe Payment Link.
+
+### 5. Where to paste the Formspree endpoint
+
+The Polish training form endpoint is stored in:
+
+```text
+siteContent.formspree.szkoleniaEndpoint
+```
+
+Replace:
+
+```text
+PASTE_FORMSPREE_SZKOLENIA_ENDPOINT_HERE
+```
+
+with the real Formspree endpoint for the Szkolenia PL form.
+
+### 6. How to publish Szkolenia PL changes
+
+Run:
+
+```bash
+git add .
+git commit -m "update szkolenia pl"
+git push
 ```
