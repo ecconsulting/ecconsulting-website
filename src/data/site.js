@@ -149,7 +149,7 @@ export const siteContent = {
   formspree: {
     formId: 'mpqnbjbv',
     endpoint: 'https://formspree.io/f/mpqnbjbv',
-    szkoleniaEndpoint: 'PASTE_FORMSPREE_SZKOLENIA_ENDPOINT_HERE',
+    szkoleniaEndpoint: 'https://formspree.io/f/mpqnbjbv',
   },
   navigation: [
     { label: 'Home', polishLabel: 'Strona główna', path: '/' },
