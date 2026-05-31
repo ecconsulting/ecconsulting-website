@@ -63,6 +63,8 @@ const assetContent = {
   portraitAboutAlt: 'Ewelina Chin seated professional portrait',
   portraitConsultation: '/assets/ewelina-portrait-consultation.jpg',
   portraitConsultationAlt: 'Ewelina Chin professional consultation portrait',
+  portraitThirdSector: '/assets/ewelina-third-sector-profile.jpg',
+  portraitThirdSectorAlt: 'Professional portrait of Ewelina Chin for Third Sector Support',
 };
 
 const pricingContent = {
@@ -433,14 +435,19 @@ export const siteContent = {
         eyebrow: 'Professional profile',
         title: 'Meet Ewelina Chin',
         text:
-          'Ewelina Chin is a finance professional and funding specialist with practical third-sector experience. She combines financial management, grant strategy, governance awareness and reporting expertise, helping organisations present stronger applications while building the controls and evidence systems that funders expect.',
+          'Ewelina Chin is a finance professional, funding specialist and entrepreneur who has been building and leading community-focused work since 2007. She is driven by a passion to support other women and to help communities become happier, healthier and stronger.',
+        followUp:
+          'Her third-sector experience includes charity finance, governance, reporting, compliance and funder accountability. She is an active trustee for CCAA SCIO and the founder and former CEO of HSTAR Scotland SCIO, bringing practical leadership experience as well as technical funding and finance expertise.',
         achievements: [
           'Over £850,000 secured for organisations during 2025.',
           'Experience supporting grassroots organisations and first-time applicants.',
           'Practical understanding of funders’ expectations around need, impact, budget and delivery.',
           'Professional experience across charity finance, Xero, compliance and management reporting.',
+          'Entrepreneurial experience since 2007, with direct understanding of organisational growth and responsibility.',
+          'Founder and former CEO of HSTAR Scotland SCIO, with lived experience of building a mission-led organisation.',
+          'Active trustee for CCAA SCIO, supporting governance and community impact.',
         ],
-        credentials: ['Finance professional', 'Funding specialist', 'HMRC Agent', 'ICO Registered', 'Xero Partner', 'PVG Certified'],
+        credentials: ['Finance professional', 'Funding specialist', 'Entrepreneur since 2007', 'Active trustee', 'Former SCIO CEO', 'HMRC Agent', 'ICO Registered', 'Xero Partner', 'PVG Certified'],
       },
       services: {
         eyebrow: 'Our Services',

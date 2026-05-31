@@ -4,7 +4,7 @@ import MotionSection from '../components/MotionSection.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
 import ContactBlock from '../components/ContactBlock.jsx';
-import { siteContent } from '../data/site.js';
+import { assets, siteContent } from '../data/site.js';
 
 function TrustCard({ item }) {
   const Icon = item.icon;
@@ -200,9 +200,25 @@ export default function GrantWriting() {
       </MotionSection>
 
       <MotionSection className="bg-white py-16 sm:py-20">
-        <div className="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+        <div className="container-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center">
+          <div className="relative mx-auto w-full max-w-md">
+            <div className="absolute -inset-4 rounded-md border border-gilt/20" aria-hidden="true" />
+            <img
+              src={assets.portraitThirdSector}
+              alt={assets.portraitThirdSectorAlt}
+              className="relative h-[34rem] w-full rounded-md border border-ink/10 object-cover object-[50%_30%] shadow-soft"
+              loading="lazy"
+            />
+            <div className="relative -mt-16 mx-5 rounded-md border border-ink/10 bg-white/90 p-4 shadow-soft backdrop-blur">
+              <p className="text-sm font-bold uppercase tracking-[0.16em] text-gilt">Third-sector leadership</p>
+              <p className="mt-2 text-sm font-semibold leading-6 text-charcoal">
+                Entrepreneur since 2007, active trustee and former SCIO founder/CEO.
+              </p>
+            </div>
+          </div>
           <div>
             <SectionHeader eyebrow={page.profile.eyebrow} title={page.profile.title} text={page.profile.text} />
+            <p className="mt-5 text-base leading-8 text-graphite">{page.profile.followUp}</p>
             <div className="mt-7 flex flex-wrap gap-2">
               {page.profile.credentials.map((item) => (
                 <span key={item} className="rounded-md border border-ink/10 bg-linen px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-ink">
@@ -211,7 +227,7 @@ export default function GrantWriting() {
               ))}
             </div>
           </div>
-          <div className="grid gap-4">
+          <div className="grid gap-4 lg:col-span-2">
             {page.profile.achievements.map((item) => (
               <div key={item} className="flex gap-4 rounded-md border border-ink/10 bg-linen/55 p-5">
                 <CheckCircle2 className="mt-1 h-5 w-5 shrink-0 text-gilt" aria-hidden="true" />
