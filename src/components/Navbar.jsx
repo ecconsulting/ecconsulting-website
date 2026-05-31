@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, MessageCircle, X } from 'lucide-react';
+import { Menu, Phone, X } from 'lucide-react';
 import { assets, company, navItems, siteContent } from '../data/site.js';
 import ButtonLink from './ButtonLink.jsx';
 
@@ -8,6 +8,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
   const isPolish = pathname === '/szkolenia-pl';
+  const navPhone = isPolish
+    ? { label: company.polandPhone, href: company.polandPhoneHref }
+    : { label: company.ukPhone, href: company.ukPhoneHref };
 
   const close = () => setOpen(false);
 
@@ -46,11 +49,11 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          <a className="text-sm font-semibold text-white/75 hover:text-champagne" href={`tel:${company.phone.replace(/\s/g, '')}`}>
-            {company.phone}
+          <a className="text-sm font-semibold text-white/75 hover:text-champagne" href={navPhone.href}>
+            {navPhone.label}
           </a>
-          <ButtonLink href={company.whatsappUrl} external variant="primary" icon={MessageCircle}>
-            {siteContent.ui.whatsappLabel}
+          <ButtonLink href={navPhone.href} variant="primary" icon={Phone}>
+            {siteContent.ui.callLabel}
           </ButtonLink>
         </div>
 
@@ -87,8 +90,8 @@ export default function Navbar() {
               <ButtonLink to="/contact" variant="light" className="w-full" onClick={close}>
                 {isPolish ? siteContent.ui.contactPolishLabel : siteContent.ui.contactLabel}
               </ButtonLink>
-              <ButtonLink href={company.whatsappUrl} external variant="primary" icon={MessageCircle} className="w-full">
-                {siteContent.ui.whatsappLabel}
+              <ButtonLink href={navPhone.href} variant="primary" icon={Phone} className="w-full">
+                {navPhone.label}
               </ButtonLink>
             </div>
           </div>

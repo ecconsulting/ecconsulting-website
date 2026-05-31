@@ -1,4 +1,4 @@
-import { CalendarCheck, CheckCircle2, MessageCircle, Phone, ShieldCheck } from 'lucide-react';
+import { CalendarCheck, CheckCircle2, Phone, ShieldCheck } from 'lucide-react';
 import PageHero from '../components/PageHero.jsx';
 import MotionSection from '../components/MotionSection.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
@@ -6,6 +6,7 @@ import IconGrid from '../components/IconGrid.jsx';
 import PricingCards from '../components/PricingCards.jsx';
 import CTASection from '../components/CTASection.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
+import ContactBlock from '../components/ContactBlock.jsx';
 import { assets, company, pricing, siteContent } from '../data/site.js';
 
 export default function BusinessConsultancy() {
@@ -103,21 +104,27 @@ export default function BusinessConsultancy() {
               text={page.consultation.text}
             />
             <div className="mt-7 grid gap-4 sm:grid-cols-2">
-              <a href={`tel:${company.phone.replace(/\s/g, '')}`} className="premium-card rounded-md p-5 transition hover:-translate-y-1 hover:border-gilt/50">
+              <a href={company.ukPhoneHref} className="premium-card rounded-md p-5 transition hover:-translate-y-1 hover:border-gilt/50">
                 <Phone className="h-6 w-6 text-gilt" aria-hidden="true" />
                 <p className="mt-4 text-sm font-bold uppercase tracking-[0.16em] text-graphite">{page.consultation.callLabel}</p>
-                <p className="mt-1 text-lg font-bold text-ink">{company.phone}</p>
+                <p className="mt-1 text-lg font-bold text-ink">{company.ukPhone}</p>
               </a>
-              <a href={company.whatsappUrl} target="_blank" rel="noreferrer" className="premium-card rounded-md p-5 transition hover:-translate-y-1 hover:border-gilt/50">
-                <MessageCircle className="h-6 w-6 text-gilt" aria-hidden="true" />
-                <p className="mt-4 text-sm font-bold uppercase tracking-[0.16em] text-graphite">{page.consultation.whatsappLabel}</p>
-                <p className="mt-1 text-lg font-bold text-ink">{company.whatsapp}</p>
+              <a href={company.polandPhoneHref} className="premium-card rounded-md p-5 transition hover:-translate-y-1 hover:border-gilt/50">
+                <Phone className="h-6 w-6 text-gilt" aria-hidden="true" />
+                <p className="mt-4 text-sm font-bold uppercase tracking-[0.16em] text-graphite">{page.consultation.polandCallLabel}</p>
+                <p className="mt-1 text-lg font-bold text-ink">{company.polandPhone}</p>
               </a>
             </div>
-            <ButtonLink to="/contact" icon={CalendarCheck} className="mt-7">
+            <ButtonLink to="/contact?service=business" icon={CalendarCheck} className="mt-7">
               {page.consultation.buttonLabel}
             </ButtonLink>
           </div>
+        </div>
+      </MotionSection>
+
+      <MotionSection className="bg-white py-16 sm:py-20">
+        <div className="container-shell">
+          <ContactBlock />
         </div>
       </MotionSection>
 
@@ -126,8 +133,8 @@ export default function BusinessConsultancy() {
         title={page.cta.title}
         text={page.cta.text}
         primaryLabel={page.cta.primaryLabel}
-        primaryTo="/contact"
-        secondaryHref={company.whatsappUrl}
+        primaryTo="/contact?service=business"
+        secondaryHref={company.ukPhoneHref}
       />
     </>
   );

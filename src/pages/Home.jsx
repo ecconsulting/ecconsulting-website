@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ClipboardCheck, MessageCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ClipboardCheck, Phone } from 'lucide-react';
 import HeroSection from '../components/HeroSection.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import MotionSection from '../components/MotionSection.jsx';
 import Testimonials from '../components/Testimonials.jsx';
 import CTASection from '../components/CTASection.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
+import ContactBlock from '../components/ContactBlock.jsx';
 import { assets, company, siteContent } from '../data/site.js';
 
 export default function Home() {
@@ -123,10 +124,16 @@ export default function Home() {
             <ButtonLink to="/business-consultancy#consultation" icon={ClipboardCheck} className="w-full">
               {home.consultation.primaryLabel}
             </ButtonLink>
-            <ButtonLink href={company.whatsappUrl} external variant="outline" icon={MessageCircle} className="w-full">
+            <ButtonLink href={company.ukPhoneHref} variant="outline" icon={Phone} className="w-full">
               {home.consultation.secondaryLabel}
             </ButtonLink>
           </div>
+        </div>
+      </MotionSection>
+
+      <MotionSection className="bg-white py-16 sm:py-20">
+        <div className="container-shell">
+          <ContactBlock />
         </div>
       </MotionSection>
 
@@ -137,8 +144,8 @@ export default function Home() {
         title={home.cta.title}
         text={home.cta.text}
         primaryLabel={home.cta.primaryLabel}
-        primaryTo="/contact"
-        secondaryHref={company.whatsappUrl}
+        primaryTo="/contact?service=general"
+        secondaryHref={company.ukPhoneHref}
       />
     </>
   );

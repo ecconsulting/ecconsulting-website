@@ -8,7 +8,6 @@ import {
   CreditCard,
   FileText,
   Mail,
-  MessageCircle,
   Phone,
   Send,
   Sparkles,
@@ -18,6 +17,7 @@ import PageHero from '../components/PageHero.jsx';
 import MotionSection from '../components/MotionSection.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
+import ContactBlock from '../components/ContactBlock.jsx';
 import { company, siteContent } from '../data/site.js';
 
 const trainingPaymentLinks = {
@@ -508,6 +508,8 @@ function TrainingApplicationForm({ page, trainingOptions, trainingDateOptions, p
       <input type="hidden" name="formularz" value="Szkolenia PL" />
       <input type="hidden" name="page" value="Szkolenia PL" />
       <input type="hidden" name="source" value="EC Consulting website" />
+      <input type="hidden" name="recipient_email" value={company.trainingEmail} />
+      <input type="hidden" name="routing_note" value={`Prosimy przekierować zgłoszenie na ${company.trainingEmail}`} />
       <input type="hidden" name="selectedCourse" value={selection.selectedCourse} />
       <input type="hidden" name="selectedDate" value={selection.selectedDate} />
       <input type="hidden" name="enquiryType" value={selection.enquiryType} />
@@ -880,30 +882,16 @@ export default function SzkoleniaPL() {
 
       <MotionSection className="bg-quiet-luxury py-16 text-white sm:py-20">
         <div className="container-shell grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
-          <div>
+          <div className="grid gap-5">
             <p className="eyebrow">Szkolenia PL</p>
-            <h2 className="mt-3 text-4xl font-semibold leading-tight sm:text-5xl">{page.contact.title}</h2>
-            <div className="mt-7 grid gap-4 text-sm text-white/78">
-              <p className="flex gap-3">
-                <Mail className="mt-1 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
-                <span>E-mail: {company.trainingEmail}</span>
-              </p>
-              <p className="flex gap-3">
-                <MessageCircle className="mt-1 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
-                <span>{page.contact.whatsappLabel}: {company.whatsapp}</span>
-              </p>
-              <p className="flex gap-3">
-                <Phone className="mt-1 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
-                <span>{page.contact.generalLabel}: {company.email}</span>
-              </p>
-            </div>
+            <ContactBlock language="pl-training" variant="dark" />
           </div>
           <div className="flex flex-col gap-3">
             <ButtonLink href={`mailto:${company.trainingEmail}`} variant="primary" icon={Mail} className="w-full">
               {page.contact.emailButton}
             </ButtonLink>
-            <ButtonLink href={company.whatsappUrl} external variant="ghost" icon={MessageCircle} className="w-full">
-              {page.contact.whatsappButton}
+            <ButtonLink href={company.polandPhoneHref} variant="ghost" icon={Phone} className="w-full">
+              {page.contact.phoneButton}
             </ButtonLink>
             <a
               href="#formularz-szkolenia"

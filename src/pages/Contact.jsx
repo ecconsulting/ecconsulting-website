@@ -1,9 +1,10 @@
-import { ExternalLink, Mail, MapPin, MessageCircle } from 'lucide-react';
+import { ExternalLink, Mail, MapPin, Phone } from 'lucide-react';
 import MotionSection from '../components/MotionSection.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import ContactForm from '../components/ContactForm.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
-import { company, contactCards, siteContent } from '../data/site.js';
+import ContactBlock from '../components/ContactBlock.jsx';
+import { company, siteContent } from '../data/site.js';
 
 export default function Contact() {
   const page = siteContent.pages.contact;
@@ -25,17 +26,8 @@ export default function Contact() {
       </section>
 
       <MotionSection className="bg-porcelain py-16 sm:py-20">
-        <div className="container-shell grid gap-5 lg:grid-cols-4">
-          {contactCards.map((item) => {
-            const Icon = item.icon;
-            return (
-              <a key={item.label} href={item.href} className="premium-card rounded-md p-5 transition hover:-translate-y-1 hover:border-gilt/50">
-                <Icon className="h-6 w-6 text-gilt" aria-hidden="true" />
-                <p className="mt-5 text-sm font-bold uppercase tracking-[0.16em] text-graphite">{item.label}</p>
-                <p className="mt-2 break-words text-base font-bold leading-7 text-ink">{item.value}</p>
-              </a>
-            );
-          })}
+        <div className="container-shell">
+          <ContactBlock />
         </div>
       </MotionSection>
 
@@ -47,28 +39,6 @@ export default function Contact() {
               title={page.form.title}
               text={page.form.text}
             />
-            <div className="mt-7 grid gap-4 rounded-md border border-ink/10 bg-linen/50 p-5">
-              <div className="flex gap-3">
-                <Mail className="mt-1 h-5 w-5 shrink-0 text-gilt" aria-hidden="true" />
-                <div>
-                  <p className="font-bold text-ink">{page.form.directEmailsTitle}</p>
-                  <p className="mt-1 text-sm leading-7 text-graphite">
-                    {siteContent.ui.directEmailLabels.general}: {company.email}
-                    <br />
-                    {siteContent.ui.directEmailLabels.grants}: {company.grantEmail}
-                    <br />
-                    {siteContent.ui.directEmailLabels.training}: {company.trainingEmail}
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-3">
-                <MessageCircle className="mt-1 h-5 w-5 shrink-0 text-gilt" aria-hidden="true" />
-                <div>
-                  <p className="font-bold text-ink">{page.form.whatsappTitle}</p>
-                  <p className="mt-1 text-sm leading-7 text-graphite">{company.whatsapp}</p>
-                </div>
-              </div>
-            </div>
           </div>
           <ContactForm />
         </div>
@@ -92,8 +62,8 @@ export default function Contact() {
               </p>
             </div>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-              <ButtonLink href={company.whatsappUrl} external icon={MessageCircle}>
-                {siteContent.ui.whatsappLabel}
+              <ButtonLink href={company.ukPhoneHref} icon={Phone}>
+                {siteContent.ui.callLabel}
               </ButtonLink>
               <ButtonLink href={`mailto:${company.email}`} variant="outline" icon={Mail}>
                 {page.map.emailButtonLabel}

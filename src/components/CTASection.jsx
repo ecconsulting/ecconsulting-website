@@ -1,4 +1,4 @@
-import { ArrowRight, MessageCircle } from 'lucide-react';
+import { ArrowRight, Phone } from 'lucide-react';
 import ButtonLink from './ButtonLink.jsx';
 import MotionSection from './MotionSection.jsx';
 import { siteContent } from '../data/site.js';
@@ -9,7 +9,7 @@ export default function CTASection({
   text,
   primaryLabel = siteContent.home.hero.primaryCta.label,
   primaryTo = '/contact',
-  secondaryLabel = siteContent.ui.whatsappLabel,
+  secondaryLabel = siteContent.ui.callLabel,
   secondaryHref,
 }) {
   return (
@@ -26,7 +26,7 @@ export default function CTASection({
               {primaryLabel}
             </ButtonLink>
             {secondaryHref && (
-              <ButtonLink href={secondaryHref} external variant="ghost" icon={MessageCircle} className="w-full">
+              <ButtonLink href={secondaryHref} variant="ghost" icon={Phone} className="w-full">
                 {secondaryLabel}
               </ButtonLink>
             )}

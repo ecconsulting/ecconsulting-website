@@ -1,10 +1,53 @@
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useForm, ValidationError } from '@formspree/react';
 import { AlertCircle, CheckCircle2, Send } from 'lucide-react';
 import { company, siteContent } from '../data/site.js';
 
+function getRoutingEmail(service) {
+  const value = service.toLowerCase();
+
+  if (value.includes('grant') || value.includes('dotacje')) {
+    return company.grantEmail;
+  }
+
+  if (value.includes('szkolenia') || value.includes('training')) {
+    return company.trainingEmail;
+  }
+
+  return company.email;
+}
+
+function resolveServiceOption(options, search) {
+  const requested = new URLSearchParams(search).get('service')?.toLowerCase();
+
+  if (!requested) return options[0];
+
+  if (requested.includes('grant') || requested.includes('funding') || requested.includes('dotacje')) {
+    return options.find((option) => option.toLowerCase().includes('grant') || option.toLowerCase().includes('dotacje')) || options[0];
+  }
+
+  if (requested.includes('business') || requested.includes('consultancy') || requested.includes('biznes')) {
+    return options.find((option) => option.toLowerCase().includes('business') || option.toLowerCase().includes('biznes')) || options[0];
+  }
+
+  if (requested.includes('training') || requested.includes('szkolenia')) {
+    return options.find((option) => option.toLowerCase().includes('szkolenia')) || options[0];
+  }
+
+  return options[0];
+}
+
 export default function ContactForm({ polish = false }) {
+  const { search } = useLocation();
   const labels = polish ? siteContent.forms.contact.pl : siteContent.forms.contact.en;
   const [state, handleSubmit] = useForm(siteContent.formspree.formId);
+  const [service, setService] = useState(() => resolveServiceOption(labels.options, search));
+  const routingEmail = getRoutingEmail(service);
+
+  useEffect(() => {
+    setService(resolveServiceOption(labels.options, search));
+  }, [labels.options, search]);
 
   if (state.succeeded) {
     return (
@@ -25,8 +68,10 @@ export default function ContactForm({ polish = false }) {
       method="POST"
       onSubmit={handleSubmit}
     >
-      <input type="hidden" name="_subject" value={`${siteContent.ui.websiteEnquirySubject} - ${company.name}`} />
+      <input type="hidden" name="_subject" value={`${siteContent.ui.websiteEnquirySubject} - ${service}`} />
       <input type="hidden" name="source_form" value="Main contact form" />
+      <input type="hidden" name="recipient_email" value={routingEmail} />
+      <input type="hidden" name="routing_note" value={`Please route this enquiry to ${routingEmail}`} />
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block">
           <span className="text-sm font-bold text-ink">{labels.name}</span>
@@ -60,7 +105,12 @@ export default function ContactForm({ polish = false }) {
         </label>
         <label className="block">
           <span className="text-sm font-bold text-ink">{labels.service}</span>
-          <select name="service" className="mt-2 min-h-12 w-full rounded-md border border-ink/10 bg-white px-4 text-sm">
+          <select
+            name="service"
+            value={service}
+            onChange={(event) => setService(event.target.value)}
+            className="mt-2 min-h-12 w-full rounded-md border border-ink/10 bg-white px-4 text-sm"
+          >
             {labels.options.map((option) => (
               <option key={option}>{option}</option>
             ))}

@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useForm, ValidationError } from '@formspree/react';
-import { AlertCircle, CheckCircle2, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle2, MapPin, Send } from 'lucide-react';
 import { assets, company, navItems, siteContent } from '../data/site.js';
+import ContactBlock from './ContactBlock.jsx';
 
 export default function Footer() {
   const { pathname } = useLocation();
@@ -25,22 +26,11 @@ export default function Footer() {
           <p className="mt-6 max-w-md text-sm leading-7 text-white/70">
             {isPolish ? footer.polishDescription : footer.description}
           </p>
-          <div className="mt-6 space-y-3 text-sm text-white/70">
+          <ContactBlock language={isPolish ? 'pl' : 'en'} variant="dark" className="mt-6" />
+          <div className="mt-4 text-sm text-white/70">
             <p className="flex gap-3">
               <MapPin className="mt-1 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
               <span>{company.address}</span>
-            </p>
-            <p className="flex gap-3">
-              <Phone className="mt-1 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
-              <a href={`tel:${company.phone.replace(/\s/g, '')}`} className="hover:text-champagne">
-                {company.phone}
-              </a>
-            </p>
-            <p className="flex gap-3">
-              <MessageCircle className="mt-1 h-4 w-4 shrink-0 text-champagne" aria-hidden="true" />
-              <a href={company.whatsappUrl} className="hover:text-champagne" target="_blank" rel="noreferrer">
-                {company.whatsapp}
-              </a>
             </p>
           </div>
         </div>
@@ -55,24 +45,6 @@ export default function Footer() {
                 {isPolish ? item.polishLabel : item.label}
               </Link>
             ))}
-          </div>
-          <div className="mt-8 space-y-2 text-sm text-white/70">
-            <p>{isPolish ? footer.companyNumberPolishLabel : footer.companyNumberLabel}: {company.number}</p>
-            <p>
-              <a href={`mailto:${company.email}`} className="hover:text-champagne">
-                {company.email}
-              </a>
-            </p>
-            <p>
-              <a href={`mailto:${company.grantEmail}`} className="hover:text-champagne">
-                {company.grantEmail}
-              </a>
-            </p>
-            <p>
-              <a href={`mailto:${company.trainingEmail}`} className="hover:text-champagne">
-                {company.trainingEmail}
-              </a>
-            </p>
           </div>
         </div>
 
@@ -97,6 +69,11 @@ export default function Footer() {
             >
               <input type="hidden" name="_subject" value={`${siteContent.ui.websiteEnquirySubject} - footer`} />
               <input type="hidden" name="source_form" value="Footer quick enquiry" />
+              <input
+                type="hidden"
+                name="recipient_email"
+                value={isPolish ? company.trainingEmail : company.email}
+              />
               <label className="sr-only" htmlFor="footer-email">
                 {formText.email}
               </label>
