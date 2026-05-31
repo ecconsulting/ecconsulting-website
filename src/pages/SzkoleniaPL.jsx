@@ -43,6 +43,48 @@ function getPaymentLink(title, fallback) {
   return trainingPaymentLinks[title] || fallback;
 }
 
+const paymentButtonVariants = {
+  primary: 'border border-champagne bg-champagne text-ink shadow-gold hover:bg-[#e4c984]',
+};
+
+const paymentButtonSizes = {
+  regular: 'min-h-12 px-5 py-3',
+  compact: 'min-h-10 px-4 py-2',
+};
+
+function openPaymentLink(href) {
+  if (!href) return;
+
+  const opened = window.open(href, '_blank', 'noopener,noreferrer');
+
+  if (!opened) {
+    window.location.assign(href);
+  }
+}
+
+function PaymentButton({
+  href,
+  children,
+  icon: Icon,
+  variant = 'primary',
+  size = 'regular',
+  className = '',
+}) {
+  const classes = [
+    'inline-flex items-center justify-center gap-2 rounded-md text-center text-sm font-bold transition duration-300',
+    paymentButtonSizes[size],
+    paymentButtonVariants[variant],
+    className,
+  ].join(' ');
+
+  return (
+    <button type="button" onClick={() => openPaymentLink(href)} className={classes}>
+      {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
+      <span>{children}</span>
+    </button>
+  );
+}
+
 function InfoPill({ children }) {
   return (
     <div className="rounded-md border border-ink/10 bg-white/80 px-4 py-3 text-sm font-semibold leading-6 text-charcoal shadow-soft">
@@ -155,14 +197,9 @@ function ScheduledCourseList({ courses, labels, onBurEnquiry }) {
               <p className="text-lg font-extrabold text-gilt">{course.price}</p>
 
               <div className="grid grid-cols-2 gap-2 sm:flex sm:justify-start lg:justify-end">
-                <a
-                  href={paymentLink}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex min-h-10 items-center justify-center rounded-md border border-champagne bg-champagne px-4 py-2 text-center text-sm font-bold text-ink shadow-gold transition hover:bg-[#e4c984]"
-                >
+                <PaymentButton href={paymentLink} size="compact">
                   {labels.orderLabel}
-                </a>
+                </PaymentButton>
                 <button
                   type="button"
                   aria-expanded={isOpen}
@@ -198,9 +235,9 @@ function ScheduledCourseList({ courses, labels, onBurEnquiry }) {
                       </div>
                     </div>
                     <div className="mt-5 grid gap-3 lg:mt-0 lg:self-end">
-                      <ButtonLink href={paymentLink} external icon={CreditCard} className="w-full">
+                      <PaymentButton href={paymentLink} icon={CreditCard} className="w-full">
                         {labels.orderLabel}
-                      </ButtonLink>
+                      </PaymentButton>
                       <button
                         type="button"
                         onClick={() => onBurEnquiry(course.title, selectedDate)}
@@ -293,14 +330,9 @@ function ShortCourseAccordion({ courses, labels, onBurEnquiry, onCourseEnquiry }
                       </ul>
                       <div className="flex flex-col justify-end gap-3">
                         {paymentLink ? (
-                          <ButtonLink
-                            href={paymentLink}
-                            external
-                            icon={CreditCard}
-                            className="w-full"
-                          >
+                          <PaymentButton href={paymentLink} icon={CreditCard} className="w-full">
                             {labels.orderLabel}
-                          </ButtonLink>
+                          </PaymentButton>
                         ) : (
                           <button
                             type="button"
@@ -357,9 +389,9 @@ function TrainingServicePanel({ offer, icon: Icon, onEnquiry }) {
           </ul>
           <div className="mt-5 grid gap-3 sm:grid-cols-2">
             {paymentLink ? (
-              <ButtonLink href={paymentLink} external icon={CreditCard} className="w-full">
+              <PaymentButton href={paymentLink} icon={CreditCard} className="w-full">
                 {offer.buttonLabel}
-              </ButtonLink>
+              </PaymentButton>
             ) : (
               <button
                 type="button"
