@@ -3,7 +3,6 @@ import PageHero from '../components/PageHero.jsx';
 import MotionSection from '../components/MotionSection.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
-import ContactBlock from '../components/ContactBlock.jsx';
 import { assets, siteContent } from '../data/site.js';
 
 function TrustCard({ item }) {
@@ -212,13 +211,19 @@ export default function GrantWriting() {
             <div className="relative -mt-16 mx-5 rounded-md border border-ink/10 bg-white/90 p-4 shadow-soft backdrop-blur">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-gilt">Third-sector leadership</p>
               <p className="mt-2 text-sm font-semibold leading-6 text-charcoal">
-                Entrepreneur since 2007, active trustee and former SCIO founder/CEO.
+                {page.profile.photoBio}
               </p>
             </div>
           </div>
           <div>
-            <SectionHeader eyebrow={page.profile.eyebrow} title={page.profile.title} text={page.profile.text} />
-            <p className="mt-5 text-base leading-8 text-graphite">{page.profile.followUp}</p>
+            <div className="max-w-3xl">
+              <p className="eyebrow">{page.profile.eyebrow}</p>
+              <h2 className="mt-3 text-4xl font-semibold leading-tight text-ink sm:text-5xl">{page.profile.title}</h2>
+              <div className="mt-5 space-y-5 text-base leading-8 text-graphite sm:text-lg">
+                <p>{page.profile.text}</p>
+                <p>{page.profile.followUp}</p>
+              </div>
+            </div>
             <div className="mt-7 flex flex-wrap gap-2">
               {page.profile.credentials.map((item) => (
                 <span key={item} className="rounded-md border border-ink/10 bg-linen px-3 py-2 text-xs font-bold uppercase tracking-[0.14em] text-ink">
@@ -400,12 +405,6 @@ export default function GrantWriting() {
               </ButtonLink>
             </div>
           </div>
-        </div>
-      </MotionSection>
-
-      <MotionSection className="bg-white py-16 sm:py-20">
-        <div className="container-shell">
-          <ContactBlock />
         </div>
       </MotionSection>
     </>

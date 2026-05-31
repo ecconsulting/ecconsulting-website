@@ -168,7 +168,7 @@ export const siteContent = {
       ukLabel: 'United Kingdom',
       polandLabel: 'Poland',
       generalLabel: 'General Enquiries',
-      grantsLabel: 'Third Sector & Funding Support',
+      grantsLabel: 'Third Sector Support',
       trainingLabel: 'Training Enquiries',
       websiteLabel: 'Website',
     },
@@ -250,7 +250,7 @@ export const siteContent = {
     navigationTitle: 'Navigation',
     navigationPolishTitle: 'Nawigacja',
     description:
-      'Professional financial, grant and business consultancy for charities, businesses and purpose-driven organisations.',
+      'Professional financial, funding and business consultancy supporting charities, social enterprises, CICs and purpose-driven organisations.',
     polishDescription:
       'Profesjonalne wsparcie finansowe, dotacyjne, biznesowe i szkoleniowe dla organizacji oraz firm.',
     companyNumberLabel: 'Company Number',
@@ -261,9 +261,8 @@ export const siteContent = {
     assetPolishNote: 'Logo w nagłówku, stopce i faviconie.',
   },
   social: [
-    { label: 'LinkedIn placeholder', href: '#', icon: Linkedin },
-    { label: 'Facebook placeholder', href: '#', icon: Facebook },
-    { label: 'Business profile placeholder', href: '#', icon: ExternalLink },
+    { label: 'LinkedIn', href: '#', icon: Linkedin },
+    { label: 'Facebook', href: '#', icon: Facebook },
   ],
   stripe: {
     fallbackPaymentLink: 'https://buy.stripe.com/test_placeholder',
@@ -435,9 +434,11 @@ export const siteContent = {
         eyebrow: 'Professional profile',
         title: 'Meet Ewelina Chin',
         text:
-          'Ewelina Chin is a finance professional, funding specialist and entrepreneur who has been building and leading community-focused work since 2007. She is driven by a passion to support other women and to help communities become happier, healthier and stronger.',
+          'Ewelina Chin is a finance professional, funding specialist and entrepreneur who has been building and leading community-focused work since 2007.',
         followUp:
-          'Her third-sector experience includes charity finance, governance, reporting, compliance and funder accountability. She is an active trustee for CCAA SCIO and the founder and former CEO of HSTAR Scotland SCIO, bringing practical leadership experience as well as technical funding and finance expertise.',
+          'Driven by a passion to support other women and help communities become happier, healthier and stronger, she brings practical leadership experience as an active trustee for CCAA SCIO and founder and former CEO of HSTAR Scotland SCIO.',
+        photoBio:
+          'Driven by purpose, Ewelina supports women and helps communities grow happier, healthier and stronger.',
         achievements: [
           'Over £850,000 secured for organisations during 2025.',
           'Experience supporting grassroots organisations and first-time applicants.',

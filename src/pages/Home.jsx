@@ -16,7 +16,7 @@ export default function Home() {
     <>
       <HeroSection />
 
-      <MotionSection className="bg-porcelain-band py-16 sm:py-20">
+      <MotionSection id="about" className="bg-porcelain-band py-16 sm:py-20">
         <div className="container-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div className="relative mx-auto w-full max-w-md">
             <div className="absolute -inset-4 rounded-md border border-gilt/20" aria-hidden="true" />
