@@ -220,7 +220,7 @@ function ScheduledCourseList({ courses, labels, onBurEnquiry }) {
   );
 }
 
-function ShortCourseAccordion({ courses, labels, onBurEnquiry }) {
+function ShortCourseAccordion({ courses, labels, onBurEnquiry, onCourseEnquiry }) {
   const [openIndex, setOpenIndex] = useState(-1);
   const courseDetails = [
     'Cena: 399 PLN',
@@ -304,7 +304,7 @@ function ShortCourseAccordion({ courses, labels, onBurEnquiry }) {
                         ) : (
                           <button
                             type="button"
-                            onClick={() => onBurEnquiry(course.title)}
+                            onClick={() => onCourseEnquiry(course.title)}
                             className="inline-flex min-h-12 w-full items-center justify-center rounded-md border border-champagne bg-champagne px-5 py-3 text-center text-sm font-bold text-ink shadow-gold transition hover:bg-[#e4c984]"
                           >
                             Zapytaj o termin
@@ -700,6 +700,14 @@ export default function SzkoleniaPL() {
     });
   };
 
+  const handleCourseEnquiry = (selectedCourse = '', selectedDate = '') => {
+    scrollToTrainingForm({
+      enquiryType: 'Zapis na kurs',
+      selectedCourse,
+      selectedDate,
+    });
+  };
+
   useEffect(() => {
     const handleBurLinkClick = (event) => {
       if (!(event.target instanceof Element)) return;
@@ -794,7 +802,12 @@ export default function SzkoleniaPL() {
               <InfoPill key={item}>{item}</InfoPill>
             ))}
           </div>
-          <ShortCourseAccordion courses={page.shortCourses.items} labels={page.availableCourses} onBurEnquiry={handleBurEnquiry} />
+          <ShortCourseAccordion
+            courses={page.shortCourses.items}
+            labels={page.availableCourses}
+            onBurEnquiry={handleBurEnquiry}
+            onCourseEnquiry={handleCourseEnquiry}
+          />
         </div>
       </MotionSection>
 
