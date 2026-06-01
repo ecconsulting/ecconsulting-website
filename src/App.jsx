@@ -5,7 +5,7 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import SiteMeta from './components/SiteMeta.jsx';
 import Home from './pages/Home.jsx';
 import GrantWriting from './pages/GrantWriting.jsx';
-import BusinessConsultancy from './pages/BusinessConsultancy.jsx';
+import BusinessSupport from './pages/BusinessSupport.jsx';
 import SzkoleniaPL from './pages/SzkoleniaPL.jsx';
 import Contact from './pages/Contact.jsx';
 
@@ -20,7 +20,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/third-sector-support" element={<GrantWriting />} />
           <Route path="/grant-writing" element={<Navigate to="/third-sector-support" replace />} />
-          <Route path="/business-consultancy" element={<BusinessConsultancy />} />
+          <Route path="/business-support" element={<BusinessSupport />} />
+          <Route path="/business-consultancy" element={<Navigate to="/business-support" replace />} />
           <Route path="/szkolenia-pl" element={<SzkoleniaPL />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

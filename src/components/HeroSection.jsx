@@ -1,4 +1,4 @@
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { assets, siteContent } from '../data/site.js';
 import ButtonLink from './ButtonLink.jsx';
@@ -26,7 +26,7 @@ export default function HeroSection() {
             <ButtonLink to={hero.primaryCta.to} icon={ArrowRight}>
               {hero.primaryCta.label}
             </ButtonLink>
-            <ButtonLink to={hero.secondaryCta.to} variant="ghost" icon={Mail}>
+            <ButtonLink to={hero.secondaryCta.to} variant="ghost" icon={ArrowRight}>
               {hero.secondaryCta.label}
             </ButtonLink>
           </div>

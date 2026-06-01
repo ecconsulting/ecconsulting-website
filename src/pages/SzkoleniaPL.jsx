@@ -52,16 +52,6 @@ const paymentButtonSizes = {
   compact: 'min-h-10 px-4 py-2',
 };
 
-function openPaymentLink(href) {
-  if (!href) return;
-
-  const opened = window.open(href, '_blank', 'noopener,noreferrer');
-
-  if (!opened) {
-    window.location.assign(href);
-  }
-}
-
 function PaymentButton({
   href,
   children,
@@ -78,10 +68,10 @@ function PaymentButton({
   ].join(' ');
 
   return (
-    <button type="button" onClick={() => openPaymentLink(href)} className={classes}>
+    <a href={href} target="_blank" rel="noreferrer" className={classes}>
       {Icon && <Icon className="h-4 w-4" aria-hidden="true" />}
       <span>{children}</span>
-    </button>
+    </a>
   );
 }
 

@@ -6,7 +6,6 @@ import MotionSection from '../components/MotionSection.jsx';
 import Testimonials from '../components/Testimonials.jsx';
 import CTASection from '../components/CTASection.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
-import ContactBlock from '../components/ContactBlock.jsx';
 import { assets, company, siteContent } from '../data/site.js';
 
 export default function Home() {
@@ -15,6 +14,27 @@ export default function Home() {
   return (
     <>
       <HeroSection />
+
+      <MotionSection className="bg-linen py-10 sm:py-12">
+        <div className="container-shell grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {home.trust.items.map((item) => {
+            const Icon = item.icon;
+            return (
+              <article key={item.title} className="rounded-md border border-ink/10 bg-white/80 p-4 shadow-soft">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-ink text-champagne">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </span>
+                  <div>
+                    <h2 className="text-sm font-bold uppercase tracking-[0.14em] text-ink">{item.title}</h2>
+                    <p className="mt-1 text-xs font-semibold leading-5 text-graphite">{item.text}</p>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </MotionSection>
 
       <MotionSection id="about" className="bg-porcelain-band py-16 sm:py-20">
         <div className="container-shell grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
@@ -48,7 +68,7 @@ export default function Home() {
         </div>
       </MotionSection>
 
-      <MotionSection className="bg-white py-16 sm:py-20">
+      <MotionSection id="services" className="bg-white py-16 sm:py-20">
         <div className="container-shell">
           <SectionHeader
             eyebrow={home.services.eyebrow}
@@ -70,8 +90,18 @@ export default function Home() {
                   </div>
                   <h3 className="mt-6 text-3xl font-semibold text-ink">{service.title}</h3>
                   <p className="mt-4 text-sm leading-7 text-graphite">{service.text}</p>
+                  {service.points?.length > 0 && (
+                    <ul className="mt-5 space-y-2">
+                      {service.points.map((point) => (
+                        <li key={point} className="flex gap-2 text-sm font-semibold leading-6 text-charcoal">
+                          <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-gilt" aria-hidden="true" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-gilt">
-                    {siteContent.ui.learnMoreLabel}
+                    {service.ctaLabel || siteContent.ui.learnMoreLabel}
                     <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" aria-hidden="true" />
                   </span>
                 </Link>
@@ -119,21 +149,25 @@ export default function Home() {
             <p className="mt-5 text-base leading-8 text-graphite">
               {home.consultation.text}
             </p>
+            {home.consultation.points?.length > 0 && (
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {home.consultation.points.map((point) => (
+                  <div key={point} className="flex items-start gap-3 rounded-md border border-ink/10 bg-linen/60 p-3">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-gilt" aria-hidden="true" />
+                    <span className="text-sm font-semibold leading-6 text-charcoal">{point}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex flex-col gap-3">
-            <ButtonLink to="/business-consultancy#consultation" icon={ClipboardCheck} className="w-full">
+            <ButtonLink to={home.consultation.primaryTo} icon={ClipboardCheck} className="w-full">
               {home.consultation.primaryLabel}
             </ButtonLink>
             <ButtonLink href={company.ukPhoneHref} variant="outline" icon={Phone} className="w-full">
               {home.consultation.secondaryLabel}
             </ButtonLink>
           </div>
-        </div>
-      </MotionSection>
-
-      <MotionSection className="bg-white py-16 sm:py-20">
-        <div className="container-shell">
-          <ContactBlock />
         </div>
       </MotionSection>
 
