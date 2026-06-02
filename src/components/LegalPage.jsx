@@ -33,6 +33,34 @@ function LegalSection({ section }) {
           </ul>
         )}
 
+        {section.groups?.map((group) => (
+          <div key={group.title} className="space-y-3">
+            <p className="font-bold text-ink">{group.title}</p>
+            <ul className="grid gap-2 pl-5">
+              {group.bullets.map((item) => (
+                <li key={item} className="list-disc">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+        {section.links && (
+          <ul className="grid gap-2">
+            {section.links.map((item) => (
+              <li key={item.label}>
+                <Link
+                  to={item.to}
+                  className="font-bold text-ink underline decoration-champagne underline-offset-4 transition hover:text-gilt"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+
         {section.closing && <p>{section.closing}</p>}
       </div>
     </section>

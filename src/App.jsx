@@ -11,6 +11,7 @@ import SzkoleniaPL from './pages/SzkoleniaPL.jsx';
 import Contact from './pages/Contact.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import CookiePolicy from './pages/CookiePolicy.jsx';
+import TermsConditions from './pages/TermsConditions.jsx';
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/cookie-policy" element={<CookiePolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsConditions />} />
         </Routes>
       </main>
       <Footer />

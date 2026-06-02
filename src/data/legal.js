@@ -205,3 +205,123 @@ export const cookiePolicy = {
     },
   ],
 };
+
+export const termsConditions = {
+  title: 'Terms & Conditions',
+  companyName: 'EC Consulting Ltd',
+  lastUpdated: '01/03/2026',
+  introduction: [
+    'These Terms & Conditions govern your use of the EC Consulting Ltd website and are governed by and construed in accordance with the laws of Scotland. By accessing or using this website, you agree to be bound by these Terms & Conditions.',
+  ],
+  address: ['EC Consulting Ltd', 'Clyde Offices', '48 West George Street, 2nd Floor', 'Glasgow, G2 1BP', 'United Kingdom'],
+  contact: {
+    email: 'contact@ecconsultant.co.uk',
+    website: 'www.ecconsultant.co.uk',
+  },
+  sections: [
+    {
+      title: 'Website Content',
+      paragraphs: [
+        'EC Consulting Ltd makes every reasonable effort to ensure that the information published on this website is accurate, current and helpful. However, we do not guarantee that all information is complete, accurate or up to date at all times.',
+        'The content of this website is provided for general information purposes only and should not be considered professional, legal, financial, accounting, taxation, funding or investment advice. Users should seek independent professional advice before making decisions based on information contained on this website.',
+        'EC Consulting Ltd accepts no liability for any loss, damage or inconvenience arising from reliance on information published on this website.',
+        'We reserve the right to amend, update or remove website content at any time without prior notice.',
+      ],
+    },
+    {
+      title: 'Professional Services',
+      paragraphs: [
+        'Information provided on this website does not create a client-consultant relationship. A formal agreement, proposal, quotation or contract must be accepted before any professional services are provided.',
+        'Any examples, case studies, funding outcomes, testimonials or project results displayed on this website are provided for illustrative purposes only. Past performance does not guarantee future results.',
+        'EC Consulting Ltd cannot guarantee the success of grant applications, funding bids, business plans, tenders, website projects, marketing campaigns or any other consultancy services.',
+      ],
+    },
+    {
+      title: 'Third-Party Websites',
+      paragraphs: [
+        'This website may contain links to external websites operated by third parties. These links are provided for convenience only.',
+        'EC Consulting Ltd has no control over the content, availability or security of external websites and accepts no responsibility for any information, products or services offered by third parties.',
+        'The inclusion of a link does not imply endorsement or recommendation by EC Consulting Ltd.',
+      ],
+    },
+    {
+      title: 'Intellectual Property',
+      paragraphs: [
+        'Unless otherwise stated, all content on this website, including text, graphics, branding, logos, website design, downloadable materials, documents and images, is the property of EC Consulting Ltd or its licensors and is protected by copyright and intellectual property laws.',
+      ],
+      groups: [
+        {
+          title: 'You may:',
+          bullets: [
+            'View and print website content for personal or internal business use.',
+            'Share links to publicly available website content.',
+          ],
+        },
+        {
+          title: 'You may not:',
+          bullets: [
+            'Reproduce website content for commercial purposes without written permission.',
+            'Copy, distribute, modify or republish substantial portions of content.',
+            'Remove copyright notices or branding.',
+            'Use website materials in a way that suggests endorsement by EC Consulting Ltd.',
+          ],
+        },
+      ],
+      closing: 'Requests for permission to reproduce content should be submitted to contact@ecconsultant.co.uk.',
+    },
+    {
+      title: 'Website Availability',
+      paragraphs: [
+        'While we aim to maintain uninterrupted access to our website, EC Consulting Ltd does not guarantee that the website will always be available, secure or free from errors.',
+        'We accept no responsibility for temporary interruptions, technical faults, maintenance periods, cyber incidents or circumstances beyond our reasonable control.',
+      ],
+    },
+    {
+      title: 'Limitation of Liability',
+      paragraphs: [
+        'To the fullest extent permitted by law, EC Consulting Ltd excludes liability for any direct, indirect, incidental or consequential loss arising from:',
+      ],
+      bullets: [
+        'Use of this website;',
+        'Inability to access this website;',
+        'Reliance on website content;',
+        'Viruses, malware or other harmful technologies;',
+        'Actions taken based on information provided on this website.',
+      ],
+      closing: 'Nothing within these Terms & Conditions excludes liability where exclusion would be unlawful.',
+    },
+    {
+      title: 'Data Protection and Privacy',
+      paragraphs: [
+        'EC Consulting Ltd is committed to protecting personal information and complying with applicable UK data protection legislation.',
+        'Please refer to our:',
+      ],
+      links: [
+        { label: 'Privacy Policy', to: '/privacy-policy' },
+        { label: 'Cookies Policy', to: '/cookie-policy' },
+      ],
+      closing: 'for information regarding how we collect, process, store and protect personal data.',
+    },
+    {
+      title: 'Accessibility',
+      paragraphs: [
+        'EC Consulting Ltd is committed to making its website accessible and user-friendly. We continually work to improve accessibility and welcome feedback from users regarding any barriers they experience.',
+      ],
+    },
+    {
+      title: 'Changes to These Terms',
+      paragraphs: [
+        'We may update these Terms & Conditions from time to time without prior notice. Updated versions will be published on this website and become effective immediately upon publication.',
+      ],
+    },
+    {
+      title: 'Contact Information',
+      paragraphs: [
+        'If you have any questions regarding these Terms & Conditions, please contact:',
+        'EC Consulting Ltd, Clyde Offices, 48 West George Street, 2nd Floor, Glasgow, G2 1BP, United Kingdom.',
+        'Email: contact@ecconsultant.co.uk',
+        'Website: www.ecconsultant.co.uk',
+      ],
+    },
+  ],
+};

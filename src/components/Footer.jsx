@@ -10,7 +10,7 @@ const footerLinks = [
   { label: 'About', to: '/#about' },
   { label: 'Contact', to: '/contact' },
   { label: 'Privacy Policy', to: '/privacy-policy' },
-  { label: 'Terms & Conditions', href: '#terms-and-conditions' },
+  { label: 'Terms & Conditions', to: '/terms-and-conditions' },
   { label: 'Cookie Policy', to: '/cookie-policy' },
 ];
 
