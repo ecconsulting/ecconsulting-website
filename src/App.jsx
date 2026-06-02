@@ -9,6 +9,8 @@ import GrantWriting from './pages/GrantWriting.jsx';
 import BusinessSupport from './pages/BusinessSupport.jsx';
 import SzkoleniaPL from './pages/SzkoleniaPL.jsx';
 import Contact from './pages/Contact.jsx';
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
+import CookiePolicy from './pages/CookiePolicy.jsx';
 
 export default function App() {
   return (
@@ -25,6 +27,8 @@ export default function App() {
           <Route path="/business-consultancy" element={<Navigate to="/business-support" replace />} />
           <Route path="/szkolenia-pl" element={<SzkoleniaPL />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/cookie-policy" element={<CookiePolicy />} />
         </Routes>
       </main>
       <Footer />

@@ -139,7 +139,7 @@ export default function CookieConsent() {
             </p>
             <p>
               For detailed information about how we use cookies and similar technologies, please visit our{' '}
-              <a href="/#cookie-policy" className="font-bold text-ink underline decoration-[#d97917] underline-offset-4">
+              <a href="/cookie-policy" className="font-bold text-ink underline decoration-[#d97917] underline-offset-4">
                 cookies information page
               </a>
               .

@@ -9,9 +9,9 @@ const footerLinks = [
   { label: 'Training (PL)', to: '/szkolenia-pl' },
   { label: 'About', to: '/#about' },
   { label: 'Contact', to: '/contact' },
-  { label: 'Privacy Policy', href: '#privacy-policy' },
+  { label: 'Privacy Policy', to: '/privacy-policy' },
   { label: 'Terms & Conditions', href: '#terms-and-conditions' },
-  { label: 'Cookie Policy', href: '#cookie-policy', id: 'cookie-policy' },
+  { label: 'Cookie Policy', to: '/cookie-policy' },
 ];
 
 export default function Footer() {
