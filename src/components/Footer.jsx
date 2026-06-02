@@ -11,7 +11,7 @@ const footerLinks = [
   { label: 'Contact', to: '/contact' },
   { label: 'Privacy Policy', href: '#privacy-policy' },
   { label: 'Terms & Conditions', href: '#terms-and-conditions' },
-  { label: 'Cookie Policy', href: '#cookie-policy' },
+  { label: 'Cookie Policy', href: '#cookie-policy', id: 'cookie-policy' },
 ];
 
 export default function Footer() {
@@ -81,6 +81,7 @@ export default function Footer() {
                 ) : (
                   <a
                     key={item.label}
+                    id={item.id}
                     href={item.href}
                     className="text-sm font-semibold text-white/70 transition hover:text-champagne"
                   >

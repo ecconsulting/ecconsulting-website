@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
+import CookieConsent from './components/CookieConsent.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import SiteMeta from './components/SiteMeta.jsx';
 import Home from './pages/Home.jsx';
@@ -27,6 +28,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
